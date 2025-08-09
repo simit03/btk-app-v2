@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}İlerleme Tablosu{% endblock %}
+
+{% block head_extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/progress.css') }}">
+    <style>
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="progress-page">
+    <div class="progress-container">
+        <div class="progress-header">
+            <h1 class="progress-title">📊 İlerleme Tablosu</h1>
+            <p class="progress-subtitle">{{ session.get('first_name', '') }} {{ session.get('last_name', '') }} - {{ session.get('grade', '') }}. Sınıf</p>
+        </div>
+        
+        <div class="progress-content">
+            <!-- Genel İstatistikler -->
+            <div class="stats-overview">
+                <div class="stat-card total-questions">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <h3>Toplam Çözülen</h3>
+                        <span class="stat-value" id="totalQuestionsSolved">0</span>
+                        <span class="stat-label">soru</span>
+                    </div>
+                </div>
+                <div class="stat-card correct-answers">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3>Doğru Cevaplar</h3>
+                        <span class="stat-value" id="totalCorrectAnswers">0</span>
+                        <span class="stat-label">soru</span>
+                    </div>
+                </div>
+                <div class="stat-card success-rate">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                        <h3>Başarı Oranı</h3>
+                        <span class="stat-value" id="successRate">0%</span>
+                        <span class="stat-label">oran</span>
+                    </div>
+                </div>
+                <div class="stat-card total-points">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <h3>Toplam Puan</h3>
+                        <span class="stat-value" id="totalPoints">0</span>
+                        <span class="stat-label">puan</span>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+
+            
+            <!-- Başarılar Bölümü -->
+            <div class="achievements-section">
+                <h3>🏆 Tüm Başarımlar</h3>
+                <div class="achievements-container">
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <p>Başarılar yükleniyor...</p>
+                        </div>
+                    </div>
+                    <!-- Debug bilgisi -->
+                    <div id="debugInfo" style="display: none; background: #f0f0f0; padding: 10px; margin-top: 10px; border-radius: 5px;">
+                        <p><strong>Debug:</strong> <span id="debugText">Yükleniyor...</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Haftalık Özet -->
+            <div class="weekly-summary-section">
+                <h3>📋 Haftalık Özet</h3>
+                <div class="weekly-cards" id="weeklyCards">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Haftalık özet yükleniyor...</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <!-- Detaylı İlerleme Tablosu -->
+            <div class="detailed-progress-section">
+                <h3>📊 Detaylı İlerleme Tablosu</h3>
+                <div class="detailed-table-container">
+                    <table class="detailed-table" id="detailedTable">
+                        <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Çözülen Soru</th>
+                                <th>Doğru</th>
+                                <th>Yanlış</th>
+                                <th>Başarı %</th>
+                                <th>Kazanılan Puan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailedTableBody">
+                            <tr class="loading-row">
+                                <td colspan="6">
+                                    <div class="loading-container">
+                                        <div class="loading-spinner"></div>
+                                        <p>Veriler yükleniyor...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Konu Bazlı Detay Tablosu -->
+            <div class="topic-detail-section">
+                <h3>📚 Konu Bazlı Detay</h3>
+                <div class="topic-detail-container">
+                    <table class="topic-detail-table" id="topicDetailTable">
+                        <thead>
+                            <tr>
+                                <th>Konu</th>
+                                <th>Toplam Soru</th>
+                                <th>Doğru</th>
+                                <th>Yanlış</th>
+                                <th>Başarı %</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topicDetailTableBody">
+                            <tr class="loading-row">
+                                <td colspan="6">
+                                    <div class="loading-container">
+                                        <div class="loading-spinner"></div>
+                                        <p>Konu detayları yükleniyor...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Yanlış Cevaplar Bölümü -->
+            <div class="wrong-answers-section">
+                <h3>❌ Yanlış Cevaplarım</h3>
+                <div class="wrong-answers-container">
+
+                    
+                    <div class="wrong-answers-list" id="wrongAnswersList">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <p>Yanlış cevaplar yükleniyor...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Wrong Answer Modal -->
+<div class="wrong-answer-modal" id="wrongAnswerModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">❌ Yanlış Cevap Detayı</h3>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-question" id="modalQuestion">
+                <!-- Question text will be inserted here -->
+            </div>
+            <div class="modal-options" id="modalOptions">
+                <!-- Options will be inserted here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-date">
+                <span class="modal-date-icon">📅</span>
+                <span id="modalDate">Tarih</span>
+            </div>
+            <div class="modal-topic">
+                <span class="modal-topic-icon">📚</span>
+                <span id="modalTopic">Konu</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block body_extra_scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/progress.js') }}"></script>
+{% endblock %} 

@@ -1,0 +1,883 @@
+/* Quiz CSS - Main Import File */
+/* This file imports all modular quiz CSS components */
+
+/* Import Bootstrap Grid System */
+@import url('../plugins/bootstrap-grid.css');
+
+/* Import Quiz Section Styles */
+@import url('./quiz-header.css');
+@import url('./quiz-question.css');
+@import url('./quiz-options.css');
+@import url('./quiz-controls.css');
+@import url('./quiz-results.css');
+@import url('./drawing-tool.css');
+
+/* ===== MAIN QUIZ CONTAINER STYLES ===== */
+
+body, .quiz-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #FFE5B4 0%, #FFD700 20%, #87CEEB 40%, #98FB98 60%, #32CD32 80%, #228B22 100%);
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.quiz-container::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: 
+        /* Çocuk dostu gökyüzü */
+        linear-gradient(180deg, #FFE5B4 0%, #FFD700 15%, #87CEEB 35%, #B0E0E6 100%),
+        /* Eğlenceli göl */
+        url('data:image/svg+xml;utf8,<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="100" cy="80" rx="80" ry="20" fill="%234682B4" opacity="0.7"/><ellipse cx="100" cy="85" rx="70" ry="15" fill="%2332CD32" opacity="0.5"/><circle cx="30" cy="75" r="3" fill="%23FFD700" opacity="0.8"/><circle cx="170" cy="75" r="2" fill="%23FFD700" opacity="0.6"/><circle cx="100" cy="70" r="4" fill="%23FFD700" opacity="0.9"/></svg>') repeat-x 0 85%,
+        /* Eğlenceli ağaçlar */
+        url('data:image/svg+xml;utf8,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="40" rx="25" ry="35" fill="%23228B22" opacity="0.8"/><ellipse cx="60" cy="35" rx="20" ry="30" fill="%2332CD32" opacity="0.9"/><circle cx="45" cy="30" r="3" fill="%23FFD700" opacity="0.8"/><circle cx="75" cy="30" r="2" fill="%23FFD700" opacity="0.6"/><circle cx="60" cy="25" r="4" fill="%23FFD700" opacity="0.9"/></svg>') repeat-x 0 70%,
+        /* Eğlenceli çimen */
+        url('data:image/svg+xml;utf8,<svg width="100" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 Q25,30 50,40 T100,40 V60 H0Z" fill="%23228B22" opacity="0.9"/><ellipse cx="20" cy="50" rx="3" ry="2" fill="%23FFD700" opacity="0.7"/><ellipse cx="80" cy="50" rx="2" ry="1" fill="%23FFD700" opacity="0.5"/><circle cx="50" cy="45" r="2" fill="%23FFD700" opacity="0.8"/></svg>') repeat-x 0 90%,
+        /* Eğlenceli iskele */
+        url('data:image/svg+xml;utf8,<svg width="80" height="40" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="35" width="60" height="3" fill="%238B4513" opacity="0.9"/><rect x="15" y="32" width="50" height="3" fill="%238B4513" opacity="0.9"/><rect x="20" y="29" width="40" height="3" fill="%238B4513" opacity="0.9"/><rect x="25" y="26" width="30" height="3" fill="%238B4513" opacity="0.9"/><rect x="30" y="23" width="20" height="3" fill="%238B4513" opacity="0.9"/><rect x="35" y="20" width="10" height="3" fill="%238B4513" opacity="0.9"/><circle cx="15" cy="33" r="2" fill="%23FFD700" opacity="0.8"/><circle cx="45" cy="26" r="1.5" fill="%23FFD700" opacity="0.6"/></svg>') no-repeat 10% 85%,
+        /* Eğlenceli bulutlar */
+        url('data:image/svg+xml;utf8,<svg width="100" height="60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="20" rx="15" ry="8" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="45" cy="20" rx="12" ry="6" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="60" cy="20" rx="10" ry="5" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="70" cy="20" rx="8" ry="4" fill="%23FFFFFF" opacity="0.8"/></svg>') repeat-x 0 10%;
+    background-size: 100% 100%, 400px 100px, 240px 120px, 200px 60px, 160px 80px, 200px 60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Yeni hareketli pixel-art kedi animasyonları */
+.corner-cat-container {
+    position: fixed;
+    right: 2vw;
+    left: auto;
+    bottom: 2vw;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    width: 120px;
+    height: 120px;
+    position: fixed;
+}
+.corner-cat-pixel {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+    transition: filter 0.3s, transform 0.3s;
+    position: relative;
+}
+.cat-rewards-top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    position: absolute;
+    top: 50%;
+    left: -180px; /* Kedinin daha solunda */
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 210;
+    width: 160px; /* 5 simge için yeterli genişlik */
+    justify-content: flex-end;
+    align-content: flex-start;
+}
+.cat-reward-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+/* Kuyruk ve göz kırpma animasyonları her zaman aktif */
+/* Detaylı kedi animasyonları */
+.cat-tail-group { transform-origin: 60px 140px; animation: tail-wag 1.2s infinite cubic-bezier(.4,2,.6,1); }
+@keyframes tail-wag {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(18deg); }
+    40% { transform: rotate(-12deg); }
+    60% { transform: rotate(15deg); }
+    80% { transform: rotate(-8deg); }
+    100% { transform: rotate(0deg); }
+}
+.cat-eyes-group { transform-origin: 100px 80px; animation: blink 4s infinite; }
+@keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95%, 98% { transform: scaleY(0.1); }
+}
+.corner-cat-detailed .cat-body-group { transition: transform 0.3s, filter 0.3s; }
+.corner-cat-detailed.happy .cat-body-group {
+    animation: cat-jump 0.7s cubic-bezier(.4,2,.6,1) 2;
+    transform-origin: 100px 140px;
+}
+@keyframes cat-jump {
+    0% { transform: scaleY(1) translateY(0); }
+    20% { transform: scaleY(0.9) translateY(-16px); }
+    40% { transform: scaleY(1.1) translateY(-28px); }
+    60% { transform: scaleY(0.95) translateY(-16px); }
+    80% { transform: scaleY(1.05) translateY(-6px); }
+    100% { transform: scaleY(1) translateY(0); }
+}
+.corner-cat-detailed.sad .cat-body-group {
+    filter: grayscale(0.7) brightness(0.8);
+}
+.corner-cat-detailed.sad .cat-ears-group polygon {
+    transform: rotate(25deg) scaleY(0.7);
+    transform-origin: 100px 30px;
+}
+@media (max-width: 768px) {
+    .corner-cat-detailed { width: 90px; height: 90px; }
+    .corner-cat-container { width: 90px; height: 90px; right: 1vw; bottom: 1vw; }
+    .cat-reward-icon { width: 22px; height: 22px; }
+    .cat-rewards-top { top: -20px; }
+}
+/* Mutlu/üzgün animasyonlar */
+.corner-cat-pixel.happy { filter: brightness(1.2) drop-shadow(0 0 16px #ffe082); transform: scale(1.05) rotate(-3deg); }
+.corner-cat-pixel.sad { filter: grayscale(0.7) brightness(0.8); transform: scale(0.95) rotate(3deg); }
+
+.quiz-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+    min-height: auto;
+}
+
+/* ===== QUIZ HEADER CONTAINER ===== */
+.quiz-header-container {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== HAREKETLİ BALIKLAR ===== */
+.swimming-fish-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.fish {
+    font-size: 2.5rem;
+    animation: swim 3s infinite ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.fish-1 {
+    animation-delay: 0s;
+    animation-duration: 4s;
+}
+
+.fish-2 {
+    animation-delay: 1s;
+    animation-duration: 3.5s;
+}
+
+.fish-3 {
+    animation-delay: 2s;
+    animation-duration: 4.5s;
+}
+
+@keyframes swim {
+    0% {
+        transform: translateX(-100px) translateY(0) rotateY(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(-70px) translateY(-20px) rotateY(0deg);
+    }
+    30% {
+        transform: translateX(-40px) translateY(0) rotateY(0deg);
+    }
+    45% {
+        transform: translateX(-10px) translateY(-15px) rotateY(0deg);
+    }
+    60% {
+        transform: translateX(20px) translateY(0) rotateY(0deg);
+    }
+    75% {
+        transform: translateX(50px) translateY(-10px) rotateY(0deg);
+    }
+    85% {
+        opacity: 1;
+        transform: translateX(80px) translateY(0) rotateY(0deg);
+    }
+    100% {
+        transform: translateX(100px) translateY(-5px) rotateY(0deg);
+        opacity: 0;
+    }
+}
+
+/* ===== QUIZ CONTENT LAYOUT ===== */
+.quiz-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.quiz-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.quiz-right {
+    flex: 1;
+    max-width: 500px;
+    position: sticky;
+    top: 1rem;
+}
+
+/* ===== QUIZ QUESTION CONTAINER ===== */
+.quiz-question-container {
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0.5rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== QUIZ OPTIONS CONTAINER ===== */
+.quiz-options-container {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0.5rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== QUIZ CONTROLS CONTAINER ===== */
+.quiz-controls-container {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0.5rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== QUIZ RESULTS CONTAINER ===== */
+.quiz-results-container {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* ===== QUIZ LOADING CONTAINER ===== */
+.quiz-loading-container {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.quiz-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== AI CHAT WINDOW ===== */
+.ai-chat-window {
+    background: 
+        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.2),
+        0 0 0 3px #FFD700;
+    color: white;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-chat-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.ai-chat-header {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.ai-avatar {
+    width: 40px;
+    height: 40px;
+    background: 
+        linear-gradient(45deg, #FFD700, #FFA500);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.ai-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+.ai-status {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-left: 0.5rem;
+}
+
+.ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-right: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.ai-message {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.ai-message.user {
+    background: rgba(255,255,255,0.2);
+    margin-left: 2rem;
+}
+
+.ai-message.ai {
+    background: rgba(255,255,255,0.1);
+    margin-right: 2rem;
+}
+
+.ai-chat-input {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.ai-chat-input input {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+}
+
+.ai-chat-input input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.ai-chat-input button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: 
+        linear-gradient(45deg, #FFD700, #FFA500);
+    color: #333;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.ai-chat-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* ===== SECTION ANIMATIONS ===== */
+.quiz-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.quiz-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quiz-section.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .quiz-container {
+        padding: 0.5rem 0;
+        background-size: 
+            50px 50px, 50px 50px, 40px 40px, 40px 40px,
+            100px 100px, 125px 125px, 90px 90px,
+            150px 150px,
+            75px 75px, 60px 60px,
+            50px 50px,
+            100% 100%;
+    }
+    
+    .quiz-wrapper {
+        padding: 0 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .quiz-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .quiz-left,
+    .quiz-right {
+        max-width: 100%;
+    }
+    
+    .quiz-question-container,
+    .quiz-options-container,
+    .quiz-results-container {
+        min-height: auto;
+        margin: 0.25rem 0;
+    }
+    
+    .ai-chat-window {
+        height: 300px;
+        margin-top: 1rem;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    .quiz-section,
+    .option-item,
+    .quiz-btn {
+        transition: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+    }
+    
+    .score-display::before {
+        animation: none;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== DEBUG STYLES ===== */
+/* Bu stiller sadece debug için kullanılır */
+.quiz-debug {
+    border: 2px solid red !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+}
+
+.quiz-debug * {
+    border: 1px solid blue !important;
+}
+
+/* Sarman kedi ve animasyonlar */
+.sarman-cat {
+    width: 110px;
+    height: 100px;
+    display: block;
+    transform-origin: 60px 55px;
+    animation: sarman-head-move 3.5s infinite cubic-bezier(.4,2,.6,1);
+}
+@keyframes sarman-head-move {
+    0%, 100% { transform: rotate(-3deg); }
+    20% { transform: rotate(3deg); }
+    40% { transform: rotate(-2deg); }
+    60% { transform: rotate(2deg); }
+    80% { transform: rotate(-3deg); }
+}
+.sarman-tail {
+    transform-origin: 110px 100px;
+    animation: sarman-tail-wag 1.2s infinite cubic-bezier(.4,2,.6,1);
+}
+@keyframes sarman-tail-wag {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(18deg); }
+    40% { transform: rotate(-12deg); }
+    60% { transform: rotate(15deg); }
+    80% { transform: rotate(-8deg); }
+    100% { transform: rotate(0deg); }
+}
+.sarman-ear {
+    transform-origin: center bottom;
+    animation: sarman-ear-twitch 4s infinite;
+}
+@keyframes sarman-ear-twitch {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-8deg); }
+    12% { transform: rotate(8deg); }
+    14% { transform: rotate(0deg); }
+}
+.sarman-eye {
+    transform-origin: center center;
+    animation: sarman-blink 5s infinite;
+}
+@keyframes sarman-blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95%, 98% { transform: scaleY(0.1); }
+}
+.sarman-pupil-left, .sarman-pupil-right {
+    animation: sarman-look-around 6s infinite;
+}
+@keyframes sarman-look-around {
+    0%, 80%, 100% { transform: translateX(0); }
+    10%, 20% { transform: translateX(-1.5px); }
+    30%, 40% { transform: translateX(1.5px); }
+    50%, 60% { transform: translateY(1.5px); }
+    70% { transform: translateY(-1.5px); }
+}
+.realistic-cat-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+}
+.realistic-cat-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.2rem;
+}
+@media (max-width: 768px) {
+    .realistic-cat-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .sarman-cat {
+        width: 80px;
+        height: 70px;
+    }
+}
+/* Eski pixel-cat ve balon stilleri kaldırıldı */
+.pixel-cat, .pixel-cat-animated, .cat-tail, .cat-eye, .cat-pupil, .pixel-cat-container, .speech-bubble, .thought-bubble { display: none !important; }
+.cat-rewards { display: flex !important; }
+
+/* ===== EXCLUDED QUESTIONS INFO STYLES ===== */
+
+/* Excluded Questions Info */
+.excluded-questions-info {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: slideInDown 0.5s ease-out;
+    transition: opacity 0.5s ease;
+}
+
+.excluded-questions-info .info-icon {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+.excluded-questions-info .info-text {
+    color: #2E7D32;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* All Questions Completed */
+.all-questions-completed {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+    border-radius: 20px;
+    border: 3px solid #FFD700;
+}
+
+.all-questions-completed .completion-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.all-questions-completed h2 {
+    color: #2E7D32;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.all-questions-completed p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.all-questions-completed .completion-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.all-questions-completed .stat-item {
+    text-align: center;
+}
+
+.all-questions-completed .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.all-questions-completed .stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.all-questions-completed .btn-primary {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.all-questions-completed .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* AI Chat Loading */
+.ai-chat-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    animation: loading-dots 1.4s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loading-dots {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Quiz Error Container */
+.quiz-error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 40px;
+}
+
+.quiz-error-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.quiz-error-content h2 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.quiz-error-content p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-actions button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-actions .btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.error-actions .btn-primary:hover {
+    background: #2980b9;
+}
+
+.error-actions .btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.error-actions .btn-secondary:hover {
+    background: #7f8c8d;
+}

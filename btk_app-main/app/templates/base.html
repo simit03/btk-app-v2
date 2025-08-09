@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Title-->
+    <title>{% block title %}Quiz Uygulaması{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <!--CSS-->
+    <!---Plugins-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins/bootstrap-grid.css') }}">
+    <!---Base-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <!---Components-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/navbar-enhanced.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/footer.css') }}">
+    <!---Extra Styles-->
+    {% block head_extra_styles %}{% endblock %}
+    
+    <!-- Merkezi Navbar Styles -->
+    <style>
+        /* Merkezi Navbar Düzenlemeleri - Tüm Sayfalar İçin */
+        .navbar-enhanced {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-user-profile-enhanced {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-user-profile-enhanced:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Merkezi Yazı Boyutları - Tüm Sayfalar İçin */
+        .user-name-enhanced {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        
+        .user-grade-enhanced {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .avatar-emoji-enhanced {
+            font-size: 1.1rem;
+        }
+        
+        .user-avatar-enhanced {
+            width: 32px;
+            height: 32px;
+        }
+        
+        /* Responsive Ayarlar */
+        @media (max-width: 768px) {
+            .user-name-enhanced {
+                font-size: 0.75rem;
+            }
+            
+            .user-grade-enhanced {
+                font-size: 0.6rem;
+            }
+            
+            .avatar-emoji-enhanced {
+                font-size: 1rem;
+            }
+            
+            .user-avatar-enhanced {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!--Navbar-->
+    <header class="navbar navbar-enhanced">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <svg class="navbar-logo" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                    <text x="20" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#8B4513">🐱</text>
+                </svg>
+                <span class="navbar-title">MatchCatAI</span>
+            </div>
+            <nav class="navbar-nav">
+                <a href="/" class="nav-link">Ana Sayfa</a>
+                {% if session.get('logged_in') %}
+                    <a href="/quiz" class="nav-link">🎯 Quiz</a>
+                    <a href="/lesson_notes" class="nav-link">📚 Ders Notları</a>
+                    <div class="nav-user-profile nav-user-profile-enhanced">
+                        <div class="user-avatar-small user-avatar-enhanced">
+                            <span class="avatar-emoji-small avatar-emoji-enhanced">👤</span>
+                        </div>
+                        <div class="user-info-small">
+                            <span class="user-name user-name-enhanced">{{ session.get('first_name', session.get('username')) }}</span>
+                            <span class="user-grade user-grade-enhanced">{{ session.get('grade', '') }}. Sınıf</span>
+                        </div>
+                        <div class="nav-dropdown">
+                            <button class="dropdown-toggle">▼</button>
+                            <div class="dropdown-menu">
+                                <a href="/profile" class="dropdown-item">👤 Profilim</a>
+                                <a href="/quiz" class="dropdown-item">🎯 Quiz</a>
+                                <a href="/lesson_notes" class="dropdown-item">📚 Ders Notları</a>
+                                <a href="/progress" class="dropdown-item">📊 İlerleme</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/logout" class="dropdown-item">🚪 Çıkış Yap</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/login" class="nav-button">Giriş Yap</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <!--Main Content-->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">
+                        <span>🐱</span>
+                        MatchCatAI
+                        <span>🐱</span>
+                    </h3>
+                    <p class="footer-description">🌟 Yapay zeka ile matematik öğrenme deneyimi 🌟</p>
+                </div>
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="/" class="footer-link">🏠 Ana Sayfa</a></li>
+                        {% if not session.get('logged_in') %}
+                            <li><a href="/login" class="footer-link">🔐 Giriş Yap</a></li>
+                            <li><a href="/register" class="footer-link">📝 Kayıt Ol</a></li>
+                        {% else %}
+                            <li><a href="/quiz" class="footer-link">🎯 Quiz</a></li>
+                            <li><a href="/profile" class="footer-link">👤 Profilim</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <p class="footer-contact">📧 saim.tuncc@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">✨ &copy; 2025 MatchCatAI. Tüm hakları saklıdır. ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--Scripts-->
+    <!---Plugins-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!---Components-->
+    <script src="{{ url_for('static', filename='js/components/navbar-enhanced.js') }}"></script>
+    <!---Main-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!---Components-->
+    {% block body_extra_scripts %}{% endblock %}
+</body>
+</html>

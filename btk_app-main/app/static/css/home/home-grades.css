@@ -1,0 +1,199 @@
+/* Grade Sections Styles */
+.grade-sections {
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(135deg, #4ECDC4, #45B7D1, #FF6B9D, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+    animation: titleGlow 3s infinite ease-in-out;
+    text-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+}
+
+.grade-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grade-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B9D, #4ECDC4, #FFD700, #45B7D1);
+    animation: rainbowShift 3s ease-in-out infinite;
+}
+
+.grade-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.grade-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.grade-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.grade-card p {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.grade-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.grade-card li {
+    padding: 0.5rem 0;
+    color: #555;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.grade-card li::before {
+    content: '✨';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    font-size: 0.8rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Grade Card Specific Colors */
+.grade-card:nth-child(1) {
+    border-top: 4px solid #FF6B9D;
+}
+
+.grade-card:nth-child(2) {
+    border-top: 4px solid #4ECDC4;
+}
+
+.grade-card:nth-child(3) {
+    border-top: 4px solid #FFD700;
+}
+
+.grade-card:nth-child(4) {
+    border-top: 4px solid #45B7D1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .grade-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .grade-sections {
+        padding: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .grade-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .grade-card {
+        padding: 1.5rem;
+    }
+    
+    .grade-icon {
+        font-size: 2.5rem;
+    }
+    
+    .grade-card h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .grade-card {
+        padding: 1rem;
+    }
+    
+    .grade-icon {
+        font-size: 2rem;
+    }
+    
+    .grade-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .grade-card p {
+        font-size: 0.9rem;
+    }
+    
+    .grade-card li {
+        font-size: 0.8rem;
+    }
+} 

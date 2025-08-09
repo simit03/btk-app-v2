@@ -1,0 +1,199 @@
+/* Register Header Styling */
+.register-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.register-header::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF6B9D, #4ECDC4, #FFD700, #45B7D1);
+    border-radius: 22px;
+    z-index: -1;
+    animation: titleFrameGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleFrameGlow {
+    0% {
+        opacity: 0.7;
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        filter: hue-rotate(30deg);
+    }
+}
+
+.register-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #4ECDC4, #45B7D1, #FF6B9D, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    animation: titleGlow 3s infinite ease-in-out;
+    text-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+    position: relative;
+}
+
+.register-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #4ECDC4, #45B7D1, #FF6B9D, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleShimmer 2s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: brightness(1) hue-rotate(0deg);
+        transform: scale(1);
+    }
+    50% {
+        filter: brightness(1.1) hue-rotate(10deg);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes titleShimmer {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+
+.register-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 0.5rem;
+    animation: subtitleFloat 4s ease-in-out infinite;
+}
+
+@keyframes subtitleFloat {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* Floating Elements Container */
+.floating-elements-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatElement 8s ease-in-out infinite;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+.star-1 { 
+    color: #FFD700; 
+    top: 15%;
+    left: 15%;
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+.star-2 { 
+    color: #FF6B9D; 
+    top: 25%;
+    right: 20%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.sparkle-1 { 
+    color: #4ECDC4; 
+    top: 35%;
+    left: 25%;
+    animation-delay: 4s;
+    animation-duration: 8s;
+}
+
+.sparkle-2 { 
+    color: #FF69B4; 
+    top: 45%;
+    right: 15%;
+    animation-delay: 6s;
+    animation-duration: 14s;
+}
+
+@keyframes floatElement {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-15px) rotate(10deg) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-8px) rotate(-5deg) scale(0.9);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-12px) rotate(8deg) scale(1.05);
+        opacity: 1;
+    }
+}
+
+@keyframes elementPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .register-title {
+        font-size: 2rem;
+    }
+    
+    .register-subtitle {
+        font-size: 1rem;
+    }
+    
+    .floating-element {
+        font-size: 1rem;
+    }
+} 

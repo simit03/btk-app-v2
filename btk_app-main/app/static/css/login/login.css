@@ -1,0 +1,170 @@
+/* Login CSS - Main Import File */
+/* This file imports all modular login CSS components */
+
+/* Import Bootstrap Grid System */
+@import url('../plugins/bootstrap-grid.css');
+
+/* Import Login Section Styles */
+@import url('./login-header.css');
+@import url('./login-form.css');
+
+/* ===== MAIN LOGIN CONTAINER STYLES ===== */
+
+body, .login-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #FF6B9D 0%, #FFD700 15%, #4ECDC4 30%, #45B7D1 45%, #96CEB4 60%, #FFEAA7 75%, #DDA0DD 90%, #FF69B4 100%);
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: rainbowShift 15s infinite ease-in-out;
+}
+
+@keyframes rainbowShift {
+    0%, 100% { 
+        background: linear-gradient(180deg, #FF6B9D 0%, #FFD700 15%, #4ECDC4 30%, #45B7D1 45%, #96CEB4 60%, #FFEAA7 75%, #DDA0DD 90%, #FF69B4 100%);
+    }
+    25% { 
+        background: linear-gradient(180deg, #FF69B4 0%, #FFD700 15%, #FF6B9D 30%, #4ECDC4 45%, #45B7D1 60%, #96CEB4 75%, #FFEAA7 90%, #DDA0DD 100%);
+    }
+    50% { 
+        background: linear-gradient(180deg, #DDA0DD 0%, #FF69B4 15%, #FFD700 30%, #FF6B9D 45%, #4ECDC4 60%, #45B7D1 75%, #96CEB4 90%, #FFEAA7 100%);
+    }
+    75% { 
+        background: linear-gradient(180deg, #FFEAA7 0%, #DDA0DD 15%, #FF69B4 30%, #FFD700 45%, #FF6B9D 60%, #4ECDC4 75%, #45B7D1 90%, #96CEB4 100%);
+    }
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: 
+        /* Çocuk dostu gökyüzü */
+        linear-gradient(180deg, #FFE5B4 0%, #FFD700 15%, #87CEEB 35%, #B0E0E6 100%),
+        /* Eğlenceli göl */
+        url('data:image/svg+xml;utf8,<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="100" cy="80" rx="80" ry="20" fill="%234682B4" opacity="0.7"/><ellipse cx="100" cy="85" rx="70" ry="15" fill="%2332CD32" opacity="0.5"/><circle cx="30" cy="75" r="3" fill="%23FFD700" opacity="0.8"/><circle cx="170" cy="75" r="2" fill="%23FFD700" opacity="0.6"/><circle cx="100" cy="70" r="4" fill="%23FFD700" opacity="0.9"/></svg>') repeat-x 0 85%,
+        /* Eğlenceli ağaçlar */
+        url('data:image/svg+xml;utf8,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="40" rx="25" ry="35" fill="%23228B22" opacity="0.8"/><ellipse cx="60" cy="35" rx="20" ry="30" fill="%2332CD32" opacity="0.9"/><circle cx="45" cy="30" r="3" fill="%23FFD700" opacity="0.8"/><circle cx="75" cy="30" r="2" fill="%23FFD700" opacity="0.6"/><circle cx="60" cy="25" r="4" fill="%23FFD700" opacity="0.9"/></svg>') repeat-x 0 70%,
+        /* Eğlenceli çimen */
+        url('data:image/svg+xml;utf8,<svg width="100" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 Q25,30 50,40 T100,40 V60 H0Z" fill="%23228B22" opacity="0.9"/><ellipse cx="20" cy="50" rx="3" ry="2" fill="%23FFD700" opacity="0.7"/><ellipse cx="80" cy="50" rx="2" ry="1" fill="%23FFD700" opacity="0.5"/><circle cx="50" cy="45" r="2" fill="%23FFD700" opacity="0.8"/></svg>') repeat-x 0 90%,
+        /* Eğlenceli bulutlar */
+        url('data:image/svg+xml;utf8,<svg width="100" height="60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="20" rx="15" ry="8" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="45" cy="20" rx="12" ry="6" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="60" cy="20" rx="10" ry="5" fill="%23FFFFFF" opacity="0.8"/><ellipse cx="70" cy="20" rx="8" ry="4" fill="%23FFFFFF" opacity="0.8"/></svg>') repeat-x 0 10%;
+    background-size: 100% 100%, 400px 100px, 240px 120px, 200px 60px, 200px 60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.login-wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.login-header-container {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.login-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    flex: 1;
+    align-items: center;
+}
+
+.login-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+.welcome-message {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 1rem;
+    }
+    
+    .login-wrapper {
+        padding: 1rem;
+    }
+    
+    .login-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .login-form-container,
+    .welcome-message {
+        padding: 2rem;
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-container::before {
+        animation: none;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+} 

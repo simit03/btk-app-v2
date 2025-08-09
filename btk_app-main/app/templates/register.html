@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block head_extra_styles %}
+    <!-- Register CSS Modules -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register/register.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="register-page">
+        <!-- Floating Elements -->
+        <div class="floating-elements-container">
+            <div class="floating-element star-1">⭐</div>
+            <div class="floating-element star-2">🌟</div>
+            <div class="floating-element sparkle-1">✨</div>
+            <div class="floating-element sparkle-2">💫</div>
+        </div>
+        
+        <div class="register-container">
+            <div class="register-wrapper">
+                <div class="register-header-container">
+                    <div class="register-header">
+                        <h1 class="register-title">Hesap Oluştur</h1>
+                        <p class="register-subtitle">Yapay Zeka Matematik Asistanına Hoş Geldin!</p>
+                    </div>
+                </div>
+                
+                <div class="register-content">
+                    <!-- Left Side - Registration Form -->
+                    <div class="register-left">
+                        <div class="register-form-container">
+                            <form class="register-form" id="registerForm">
+                                <div class="form-group">
+                                    <label for="username">Kullanıcı Adı</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="username" name="username" required>
+                                        <div class="input-icon">👤</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="firstName">Adı</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="firstName" name="firstName" required>
+                                        <div class="input-icon">🐱</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName">Soyadı</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="lastName" name="lastName" required>
+                                        <div class="input-icon">🐭</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password">Şifre</label>
+                                    <div class="input-wrapper">
+                                        <input type="password" id="password" name="password" required>
+                                        <div class="input-icon">🔒</div>
+                                        <button type="button" class="toggle-password" id="togglePassword">👁️</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="confirmPassword">Şifre Tekrar</label>
+                                    <div class="input-wrapper">
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                        <div class="input-icon">🔐</div>
+                                        <button type="button" class="toggle-password" id="toggleConfirmPassword">👁️</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group grade-group">
+                                    <label>Sınıf Seçin</label>
+                                    <div class="grade-options">
+                                        <label class="grade-option">
+                                            <input type="radio" name="grade" value="1" required>
+                                            <span class="grade-checkmark">1. Sınıf</span>
+                                        </label>
+                                        <label class="grade-option">
+                                            <input type="radio" name="grade" value="2" required>
+                                            <span class="grade-checkmark">2. Sınıf</span>
+                                        </label>
+                                        <label class="grade-option">
+                                            <input type="radio" name="grade" value="3" required>
+                                            <span class="grade-checkmark">3. Sınıf</span>
+                                        </label>
+                                        <label class="grade-option">
+                                            <input type="radio" name="grade" value="4" required>
+                                            <span class="grade-checkmark">4. Sınıf</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="register-btn" id="registerBtn">
+                                        <span class="btn-text">Kayıt Ol</span>
+                                        <span class="btn-loading" style="display: none;">
+                                            <div class="loading-dots">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </span>
+                                    </button>
+                                </div>
+                                
+                                <div class="form-links">
+                                    <a href="{{ url_for('pages.login') }}" class="login-link">Zaten hesabın var mı? Giriş yap</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Math Teacher Cat -->
+                    <div class="register-right">
+                        <div class="welcome-message">
+                            <div class="welcome-header">
+                                <div class="mouse-tracking-cat-container">
+                                    <!-- Gümüş matematik öğretmeni kedi SVG -->
+                                    <svg class="mouse-tracking-cat" viewBox="0 0 200 160" width="120" height="100" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Gümüş matematik öğretmeni kedi - gerçekçi tasarım -->
+                                        
+                                        <!-- Kuyruk (gümüş matematik kedi) -->
+                                        <path class="tracking-tail" d="M140 90 Q160 85 165 95 Q170 105 155 110 Q140 115 135 105 Q130 95 140 90" fill="#C0C0C0" stroke="#A0A0A0" stroke-width="2"/>
+                                        <path d="M145 92 Q155 90 160 95 Q165 100 155 105 Q145 110 140 105 Q135 100 145 92" fill="#D0D0D0"/>
+                                        
+                                        <!-- Gövde (gümüş matematik kedi) -->
+                                        <ellipse cx="80" cy="100" rx="45" ry="35" fill="#C0C0C0" stroke="#A0A0A0" stroke-width="2"/>
+                                        <ellipse cx="80" cy="105" rx="35" ry="25" fill="#D0D0D0"/>
+                                        
+                                        <!-- Karın (gümüş matematik kedi) -->
+                                        <ellipse cx="80" cy="110" rx="25" ry="15" fill="#E0E0E0"/>
+                                        <ellipse cx="80" cy="115" rx="20" ry="10" fill="#F0F0F0"/>
+                                        
+                                        <!-- Kafa (gümüş matematik kedi) -->
+                                        <ellipse class="tracking-head" cx="70" cy="60" rx="35" ry="30" fill="#C0C0C0" stroke="#A0A0A0" stroke-width="2"/>
+                                        <ellipse cx="70" cy="65" rx="30" ry="25" fill="#D0D0D0"/>
+                                        
+                                        <!-- Kulaklar (gümüş matematik kedi) -->
+                                        <path class="tracking-ear tracking-ear-left" d="M45 40 L55 15 L65 35 L55 45 Z" fill="#C0C0C0" stroke="#A0A0A0" stroke-width="2"/>
+                                        <path class="tracking-ear tracking-ear-right" d="M95 40 L85 15 L75 35 L85 45 Z" fill="#C0C0C0" stroke="#A0A0A0" stroke-width="2"/>
+                                        
+                                        <!-- İç kulak (gümüş matematik kedi) -->
+                                        <path d="M50 20 L55 30 L65 35 L55 40 Z" fill="#FF6B9D"/>
+                                        <path d="M90 20 L85 30 L75 35 L85 40 Z" fill="#FF6B9D"/>
+                                        
+                                        <!-- Gözler (gümüş matematik kedi - imleci takip eden) -->
+                                        <ellipse class="tracking-eye tracking-eye-left" cx="55" cy="65" rx="10" ry="12" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                                        <ellipse class="tracking-eye tracking-eye-right" cx="85" cy="65" rx="10" ry="12" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                                        
+                                        <!-- Göz bebekleri (gümüş matematik kedi) -->
+                                        <ellipse class="tracking-pupil tracking-pupil-left" cx="55" cy="67" rx="3.5" ry="4.5" fill="#000000"/>
+                                        <ellipse class="tracking-pupil tracking-pupil-right" cx="85" cy="67" rx="3.5" ry="4.5" fill="#000000"/>
+                                        
+                                        <!-- Göz parlaması (gümüş matematik kedi) -->
+                                        <ellipse cx="53" cy="65" rx="2" ry="2.5" fill="#FFFFFF"/>
+                                        <ellipse cx="83" cy="65" rx="2" ry="2.5" fill="#FFFFFF"/>
+                                        
+                                        <!-- Burun (gümüş matematik kedi) -->
+                                        <ellipse cx="70" cy="75" rx="2" ry="1.5" fill="#FF6B9D"/>
+                                        
+                                        <!-- Ağız (gümüş matematik kedi) -->
+                                        <path d="M68 78 Q70 81 72 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        
+                                        <!-- Bıyıklar (gümüş matematik kedi) -->
+                                        <path d="M40 72 Q30 74 40 76" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        <path d="M40 74 Q30 76 40 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        <path d="M40 76 Q30 78 40 80" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        <path d="M100 72 Q110 74 100 76" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        <path d="M100 74 Q110 76 100 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        <path d="M100 76 Q110 78 100 80" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                        
+                                        <!-- Yüz detayları (gümüş matematik kedi) -->
+                                        <ellipse cx="65" cy="55" rx="1" ry="1" fill="#A0A0A0"/>
+                                        <ellipse cx="75" cy="55" rx="1" ry="1" fill="#A0A0A0"/>
+                                        <ellipse cx="70" cy="60" rx="1" ry="1" fill="#A0A0A0"/>
+                                        
+                                        <!-- Tüy detayları (gümüş matematik kedi) -->
+                                        <path d="M35 45 Q40 50 45 45" stroke="#A0A0A0" stroke-width="1" fill="none"/>
+                                        <path d="M105 45 Q100 50 95 45" stroke="#A0A0A0" stroke-width="1" fill="none"/>
+                                        <path d="M60 35 Q65 40 70 35" stroke="#A0A0A0" stroke-width="1" fill="none"/>
+                                        <path d="M80 35 Q75 40 70 35" stroke="#A0A0A0" stroke-width="1" fill="none"/>
+                                        
+                                        <!-- Gümüş matematik kedi özel detayları -->
+                                        <ellipse cx="50" cy="50" rx="2" ry="2" fill="#A0A0A0"/>
+                                        <ellipse cx="90" cy="50" rx="2" ry="2" fill="#A0A0A0"/>
+                                        <ellipse cx="70" cy="45" rx="1" ry="1" fill="#A0A0A0"/>
+                                        
+                                        <!-- Matematik sembolleri -->
+                                        <text x="40" y="25" font-family="Arial" font-size="8" fill="#FFD700">+</text>
+                                        <text x="95" y="25" font-family="Arial" font-size="8" fill="#FFD700">×</text>
+                                        <text x="70" y="15" font-family="Arial" font-size="8" fill="#FFD700">÷</text>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="welcome-title">Hoş Geldin! 👋</div>
+                                    <div class="welcome-subtitle">Gümüş Matematik Öğretmeni Kedisi!</div>
+                                </div>
+                            </div>
+                            
+                            <div class="welcome-content">
+                                <div class="welcome-message-text">
+                                    <p>📝 Kayıt ol ve matematik yolculuğuna başla</p>
+                                    <p>🎓 Sınıfını seç ve öğrenmeye başla</p>
+                                    <p>🧮 Toplama, çıkarma, çarpma, bölme</p>
+                                    <p>🌟 Sen de matematik dehası olabilirsin!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body_extra_scripts %}
+    <!-- Register JavaScript Modules -->
+    <script src="{{ url_for('static', filename='js/register/register.js') }}"></script>
+{% endblock %} 

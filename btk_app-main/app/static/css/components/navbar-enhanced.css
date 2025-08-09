@@ -1,0 +1,388 @@
+/* Enhanced Navbar Styles for All Pages */
+/* Bu dosya tüm sayfalarda tutarlı navbar görünümü sağlar */
+
+/* Navbar Container */
+.navbar-enhanced {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-container-enhanced {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/* Brand Section */
+.navbar-brand-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand-enhanced:hover {
+    transform: scale(1.05);
+}
+
+.navbar-logo-enhanced {
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand-enhanced:hover .navbar-logo-enhanced {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.navbar-title-enhanced {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8B4513;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand-enhanced:hover .navbar-title-enhanced {
+    color: #654321;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Links */
+.navbar-nav-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link-enhanced {
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.nav-link-enhanced:hover::before {
+    left: 100%;
+}
+
+.nav-link-enhanced:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #654321;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 140, 0, 0.3);
+}
+
+.nav-link-enhanced.active {
+    background: linear-gradient(135deg, #FF8C00, #FF6B35);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+}
+
+/* Buttons */
+.nav-button-enhanced {
+    background: linear-gradient(135deg, #FF6B35, #FF8C00);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.nav-button-enhanced:hover {
+    background: linear-gradient(135deg, #FF8C00, #FF6B35);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5);
+    color: white;
+}
+
+/* User Profile Section */
+.nav-user-profile-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+}
+
+.nav-user-profile-enhanced:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.user-avatar-enhanced {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.avatar-emoji-enhanced {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.user-info-enhanced {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    flex: 1;
+}
+
+.user-name-enhanced {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #8B4513;
+    line-height: 1.1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-grade-enhanced {
+    font-size: 0.75rem;
+    color: #654321;
+    opacity: 0.9;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.nav-dropdown-enhanced {
+    position: relative;
+}
+
+.dropdown-toggle-enhanced {
+    background: none;
+    border: none;
+    color: #8B4513;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-toggle-enhanced:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+    color: #654321;
+}
+
+.dropdown-menu-enhanced {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 12px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 8px;
+}
+
+.nav-dropdown-enhanced:hover .dropdown-menu-enhanced {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #8B4513;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 2px 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-item-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.dropdown-item-enhanced:hover::before {
+    left: 100%;
+}
+
+.dropdown-item-enhanced:hover {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #8B4513;
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.dropdown-divider-enhanced {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #FFA500, transparent);
+    margin: 8px 16px;
+    border-radius: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-container-enhanced {
+        padding: 0 1rem;
+        height: 60px;
+    }
+    
+    .navbar-nav-enhanced {
+        gap: 1rem;
+    }
+    
+    .nav-link-enhanced {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .nav-button-enhanced {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+    
+    .navbar-title-enhanced {
+        font-size: 1.3rem;
+    }
+    
+    .nav-user-profile-enhanced {
+        min-width: 150px;
+        padding: 8px 12px;
+    }
+    
+    .user-avatar-enhanced {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .avatar-emoji-enhanced {
+        font-size: 1rem;
+    }
+    
+    .user-name-enhanced {
+        font-size: 0.8rem;
+    }
+    
+    .user-grade-enhanced {
+        font-size: 0.65rem;
+    }
+    
+    .dropdown-menu-enhanced {
+        right: -20px;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-nav-enhanced {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+    
+    .nav-link-enhanced, .nav-button-enhanced {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-user-profile-enhanced {
+        min-width: 120px;
+    }
+}
+
+/* Animation Classes */
+.navbar-fade-in {
+    animation: navbarFadeIn 0.6s ease-out;
+}
+
+@keyframes navbarFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-bounce {
+    animation: navbarBounce 0.5s ease-out;
+}
+
+@keyframes navbarBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+} 

@@ -1,0 +1,119 @@
+/* Quiz Score Indicators Styles */
+.quiz-score-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: -80px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 200px;
+    align-items: flex-start;
+    position: relative;
+    min-height: 40px;
+}
+
+.score-fish {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+    border-radius: 50%;
+    position: relative;
+    animation: fishAppear 0.5s ease-out, fishMoveLeft 2s ease-in-out 0.5s forwards;
+    box-shadow: 0 3px 8px rgba(255, 107, 107, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 2px solid #FF4D4D;
+}
+
+.score-cross {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #FFD700, #FFE55C);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8B4513;
+    font-weight: bold;
+    font-size: 18px;
+    animation: crossAppear 0.5s ease-out, crossMoveLeft 2s ease-in-out 0.5s forwards;
+    box-shadow: 0 3px 8px rgba(255, 215, 0, 0.4);
+    border: 2px solid #FFA500;
+}
+
+@keyframes fishAppear {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(-90deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes crossAppear {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3) rotate(90deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes fishMoveLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-80px);
+    }
+}
+
+@keyframes crossMoveLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-80px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quiz-score-indicators {
+        bottom: 10px;
+        left: -80px;
+    }
+    
+    .score-fish {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .score-cross {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+} 

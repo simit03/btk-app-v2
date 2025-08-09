@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Uygulaması{% endblock %}
+
+{% block head_extra_styles %}
+    <!-- Bootstrap Grid CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins/bootstrap-grid.css') }}">
+    
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz/quiz.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz/quiz-animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz/quiz-score-indicators.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz/quiz-achievements.css') }}">
+    
+    <!-- GSAP Animation Library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="quiz-page">
+    <!-- Kalem Tool Butonu -->
+    <button class="pen-tool-button" id="penToolBtn" title="Kalem Tool">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+        </svg>
+    </button>
+    
+    <!-- Kalem Kontrolleri -->
+    <div class="drawing-controls" id="drawingControls">
+        <div style="text-align: center; margin-bottom: 10px; font-weight: bold; color: #333;">Kalem Tool</div>
+        <div style="display: flex; justify-content: center; gap: 5px;">
+            <input type="color" class="color-picker" id="colorPicker" value="#FF0000">
+            <input type="color" class="color-picker" value="#00FF00">
+            <input type="color" class="color-picker" value="#0000FF">
+            <input type="color" class="color-picker" value="#000000">
+        </div>
+        <input type="range" class="brush-size" id="brushSize" min="1" max="20" value="5">
+        <button class="clear-canvas" id="clearCanvas">Temizle</button>
+    </div>
+
+    <!-- Çizim Canvas'ı -->
+    <canvas class="drawing-canvas" id="drawingCanvas"></canvas>
+
+    <!-- Main Quiz Container -->
+    <div class="quiz-container">
+        <div class="quiz-wrapper">
+            
+            <!-- Quiz Header Container -->
+            <div class="quiz-header-container">
+                <div class="quiz-header">
+                    <div class="quiz-header-content">
+                        <div class="swimming-fish-container">
+                            <div class="fish fish-1">🐟</div>
+                            <div class="fish fish-2">🐠</div>
+                            <div class="fish fish-3">🐡</div>
+                        </div>
+                        <div class="quiz-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Content Layout -->
+            <div class="quiz-content">
+                
+                <!-- Left Side - Quiz Questions -->
+                <div class="quiz-left">
+                    
+
+                    
+                    <!-- Quiz Question Container -->
+                    <div class="quiz-question-container">
+                        <div class="quiz-question">
+                            <div class="question-number">Soru 1</div>
+                            <div class="question-text">Quiz yükleniyor...</div>
+                            <div class="question-image-container"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Options Container -->
+                    <div class="quiz-options-container">
+                        <div class="quiz-options">
+                            <div class="option-item">
+                                <div class="option-label">
+                                    <span class="option-letter">A</span>
+                                    <span class="option-text">Seçenekler yükleniyor...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Controls Container -->
+                    <div class="quiz-controls-container">
+                        <div class="quiz-controls">
+                            <div class="quiz-nav">
+                                <button class="quiz-nav-btn" id="prevBtn" disabled>‹</button>
+                                <span class="quiz-nav-info">1 / 10</span>
+                                <button class="quiz-nav-btn" id="nextBtn">›</button>
+                                <button class="quiz-btn btn-secondary" id="skipBtn">Atla</button>
+                                <button class="quiz-btn btn-primary" id="submitBtn">Cevapla</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Side - AI Chat -->
+                <div class="quiz-right">
+                    <div class="ai-chat-window">
+                        <div class="ai-chat-header realistic-cat-header">
+                            <div class="realistic-cat-container">
+                                <!-- Sarman, hareketli kedi SVG -->
+                                <svg class="sarman-cat" viewBox="0 0 140 120" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Kuyruk (animasyonlu) -->
+                                    <ellipse class="sarman-tail" cx="120" cy="100" rx="18" ry="6" fill="#f6a04d" stroke="#e38b3c" stroke-width="3"/>
+                                    <!-- Gövde -->
+                                    <ellipse cx="70" cy="90" rx="40" ry="28" fill="#f6a04d" stroke="#e38b3c" stroke-width="3"/>
+                                    <!-- Karın -->
+                                    <ellipse cx="70" cy="100" rx="22" ry="12" fill="#fff"/>
+                                    <!-- Kafa -->
+                                    <ellipse class="sarman-head" cx="60" cy="55" rx="28" ry="26" fill="#f6a04d" stroke="#e38b3c" stroke-width="3"/>
+                                    <!-- Kulaklar (animasyonlu) -->
+                                    <polygon class="sarman-ear sarman-ear-left" points="35,35 50,10 60,38" fill="#f6a04d" stroke="#e38b3c" stroke-width="3"/>
+                                    <polygon class="sarman-ear sarman-ear-right" points="85,35 70,10 60,38" fill="#f6a04d" stroke="#e38b3c" stroke-width="3"/>
+                                    <!-- İç kulak -->
+                                    <polygon points="50,20 55,30 60,38" fill="#fff3e0"/>
+                                    <polygon points="70,20 65,30 60,38" fill="#fff3e0"/>
+                                    <!-- Gözler (animasyonlu) -->
+                                    <ellipse class="sarman-eye sarman-eye-left" cx="52" cy="60" rx="4" ry="7" fill="#fff"/>
+                                    <ellipse class="sarman-eye sarman-eye-right" cx="68" cy="60" rx="4" ry="7" fill="#fff"/>
+                                    <ellipse class="sarman-pupil sarman-pupil-left" cx="52" cy="62" rx="1.2" ry="2.2" fill="#333"/>
+                                    <ellipse class="sarman-pupil sarman-pupil-right" cx="68" cy="62" rx="1.2" ry="2.2" fill="#333"/>
+                                    <!-- Burun -->
+                                    <ellipse cx="60" cy="72" rx="2.5" ry="1.5" fill="#e38b3c"/>
+                                    <!-- Ağız -->
+                                    <path d="M58 75 Q60 78 62 75" stroke="#333" stroke-width="2" fill="none"/>
+                                    <!-- Bıyıklar -->
+                                    <path d="M45 72 Q35 74 45 76" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                                    <path d="M75 72 Q85 74 75 76" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                                    <!-- Sarman çizgileri -->
+                                    <path d="M50 45 Q48 40 55 38" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                                    <path d="M70 45 Q72 40 65 38" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="ai-name">CatmatchAI</div>
+                                <div class="ai-status">Çevrimiçi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-chat-messages">
+                            <div class="ai-message ai">
+                                Merhaba! Ben CatmatchAI. Quiz sırasında size yardım etmek için buradayım. Herhangi bir sorunuz varsa sorabilirsiniz! 😊
+                            </div>
+                            <div class="ai-message user">
+                                Quiz nasıl çalışıyor?
+                            </div>
+                            <div class="ai-message ai">
+                                Quiz sistemimiz çok basit! Soruları okuyup doğru cevabı seçmeniz yeterli. Size konfeti ve yıldızlarla güzel animasyonlar göstereceğiz! 🌟
+                            </div>
+                        </div>
+                        
+                        <div class="ai-chat-input">
+                            <input type="text" placeholder="Mesajınızı yazın..." id="aiChatInput">
+                            <button id="aiChatSend">Gönder</button>
+                        </div>
+                        <div class="ai-chat-loading" id="aiChatLoading" style="display: none;">
+                            <div class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span>AI düşünüyor...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Quiz Results Container -->
+            <div class="quiz-results-container" style="display: none;">
+                <div class="quiz-results">
+                    <div class="results-header">
+                        <h2 class="results-title">Quiz Tamamlandı!</h2>
+                        <p class="results-subtitle">Sonuçlarınızı görüntüleyin</p>
+                    </div>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <div class="score-percentage">0%</div>
+                        </div>
+                        <div class="score-text">Puanınız</div>
+                        <div class="score-details">0 / 0 doğru</div>
+                    </div>
+                    <div class="results-stats"></div>
+                    <div class="results-actions"></div>
+                </div>
+            </div>
+
+            <!-- Loading State Container -->
+            <div class="quiz-loading-container" style="display: none;">
+                <div class="quiz-loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Sağ alt köşe detaylı hareketli kedi ve ödül/kılçık alanı -->
+        <div class="corner-cat-container">
+            <!-- Quiz Score Indicators -->
+            <div class="quiz-score-indicators">
+                <div class="score-container">
+                    <!-- Balık ve çarpı emojileri buraya eklenecek -->
+                </div>
+            </div>
+            <div class="cat-rewards cat-rewards-top"></div>
+            <svg class="corner-cat-detailed" viewBox="0 0 180 180" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+                <!-- Kuyruk (animasyonlu) -->
+                <g class="cat-tail-group">
+                    <path d="M40 140 Q20 120 50 110 Q80 100 90 130 Q100 160 70 150" fill="#f6a04d" stroke="#e38b3c" stroke-width="4"/>
+                    <ellipse cx="65" cy="148" rx="10" ry="6" fill="#fff"/>
+                </g>
+                <!-- Gövde ve baş (zıplama için animasyonlu) -->
+                <g class="cat-body-group">
+                    <!-- Gövde -->
+                    <ellipse cx="100" cy="120" rx="45" ry="38" fill="#f6a04d" stroke="#e38b3c" stroke-width="4"/>
+                    <ellipse cx="100" cy="145" rx="25" ry="15" fill="#fff"/>
+                    <!-- Kafa -->
+                    <ellipse cx="100" cy="70" rx="38" ry="36" fill="#f6a04d" stroke="#e38b3c" stroke-width="4"/>
+                    <!-- Kulaklar (animasyonlu) -->
+                    <g class="cat-ears-group">
+                        <polygon points="70,40 60,10 95,35" fill="#f6a04d" stroke="#e38b3c" stroke-width="4"/>
+                        <polygon points="130,40 140,10 105,35" fill="#f6a04d" stroke="#e38b3c" stroke-width="4"/>
+                        <polygon points="65,20 70,35 90,40" fill="#fff3e0"/>
+                        <polygon points="135,20 130,35 110,40" fill="#fff3e0"/>
+                    </g>
+                    <!-- Gözler (animasyonlu) -->
+                    <g class="cat-eyes-group">
+                        <ellipse cx="88" cy="80" rx="8" ry="13" fill="#fff"/>
+                        <ellipse cx="112" cy="80" rx="8" ry="13" fill="#fff"/>
+                        <ellipse cx="88" cy="85" rx="3.5" ry="6" fill="#3a2b1a"/>
+                        <ellipse cx="112" cy="85" rx="3.5" ry="6" fill="#3a2b1a"/>
+                    </g>
+                    <!-- Burun ve ağız -->
+                    <ellipse cx="100" cy="98" rx="4" ry="2.5" fill="#e38b3c"/>
+                    <path d="M98 102 Q100 106 102 102" stroke="#3a2b1a" stroke-width="2" fill="none"/>
+                    <!-- Yanaklar ve bıyıklar -->
+                    <ellipse cx="80" cy="95" rx="6" ry="3" fill="#fff"/>
+                    <ellipse cx="120" cy="95" rx="6" ry="3" fill="#fff"/>
+                    <path d="M75 95 Q60 100 75 105" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                    <path d="M125 95 Q140 100 125 105" stroke="#e38b3c" stroke-width="2" fill="none"/>
+                    <!-- Patiler -->
+                    <ellipse cx="80" cy="155" rx="10" ry="7" fill="#fff"/>
+                    <ellipse cx="120" cy="155" rx="10" ry="7" fill="#fff"/>
+                    <!-- Sarman çizgileri -->
+                    <path d="M85 60 Q80 55 95 50" stroke="#e38b3c" stroke-width="3" fill="none"/>
+                    <path d="M115 60 Q120 55 105 50" stroke="#e38b3c" stroke-width="3" fill="none"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body_extra_scripts %}
+    <!-- Quiz JavaScript Modules -->
+    <!-- Load modules in order -->
+    <script src="{{ url_for('static', filename='js/quiz/quiz-header.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/quiz/quiz-question.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/quiz/quiz-options.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/quiz/quiz-controls.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/quiz/quiz-results.js') }}"></script>
+    
+    <!-- Main Quiz App -->
+    <script src="{{ url_for('static', filename='js/quiz/quiz.js') }}"></script>
+    
+    <!-- Drawing Tool JavaScript -->
+    <script src="{{ url_for('static', filename='js/quiz/drawing-tool.js') }}"></script>
+    
+    <!-- AI Chat JavaScript -->
+    <script src="{{ url_for('static', filename='js/quiz/ai-chat.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,157 @@
+/* Quiz Header Styles */
+.quiz-header {
+    background: 
+        /* Pixel art rainbow gradient */
+        linear-gradient(45deg, 
+            #FF6B6B 0%, #FF6B6B 8.33%,
+            #FF8E53 8.33%, #FF8E53 16.66%,
+            #FFD93D 16.66%, #FFD93D 25%,
+            #6BCF7F 25%, #6BCF7F 33.33%,
+            #4ECDC4 33.33%, #4ECDC4 41.66%,
+            #45B7D1 41.66%, #45B7D1 50%,
+            #96CEB4 50%, #96CEB4 58.33%,
+            #FFEAA7 58.33%, #FFEAA7 66.66%,
+            #DDA0DD 66.66%, #DDA0DD 75%,
+            #98D8C8 75%, #98D8C8 83.33%,
+            #F7DC6F 83.33%, #F7DC6F 91.66%,
+            #BB8FCE 91.66%, #BB8FCE 100%
+        );
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.3),
+        inset 0 0 0 4px rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+    border: 4px solid #FFD700;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quiz-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Pixel art stars */
+        radial-gradient(circle at 10% 20%, #FFFFFF 0%, #FFFFFF 2px, transparent 2px),
+        radial-gradient(circle at 25% 15%, #FFFFFF 0%, #FFFFFF 1px, transparent 1px),
+        radial-gradient(circle at 40% 25%, #FFFFFF 0%, #FFFFFF 1px, transparent 1px),
+        radial-gradient(circle at 55% 10%, #FFFFFF 0%, #FFFFFF 2px, transparent 2px),
+        radial-gradient(circle at 70% 20%, #FFFFFF 0%, #FFFFFF 1px, transparent 1px),
+        radial-gradient(circle at 85% 15%, #FFFFFF 0%, #FFFFFF 1px, transparent 1px),
+        radial-gradient(circle at 95% 25%, #FFFFFF 0%, #FFFFFF 2px, transparent 2px),
+        /* Pixel art hearts */
+        radial-gradient(circle at 15% 80%, #FF69B4 0%, #FF69B4 3px, transparent 3px),
+        radial-gradient(circle at 35% 85%, #FF69B4 0%, #FF69B4 2px, transparent 2px),
+        radial-gradient(circle at 55% 90%, #FF69B4 0%, #FF69B4 3px, transparent 3px),
+        radial-gradient(circle at 75% 88%, #FF69B4 0%, #FF69B4 2px, transparent 2px),
+        radial-gradient(circle at 90% 92%, #FF69B4 0%, #FF69B4 3px, transparent 3px);
+    background-size: 
+        200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px,
+        150px 150px, 150px 150px, 150px 150px, 150px 150px, 150px 150px;
+    background-position: 
+        0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+        0 0, 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x;
+    opacity: 0.3;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.quiz-header-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 1.5rem;
+}
+
+.quiz-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        3px 3px 0px #FF6B6B,
+        6px 6px 0px #FF8E53,
+        9px 9px 0px #FFD93D;
+    color: #FFFFFF;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.quiz-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 0.75rem;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0px #FF6B6B;
+}
+
+.quiz-progress {
+    background: rgba(255,255,255,0.3);
+    border-radius: 25px;
+    padding: 0.3rem;
+    margin: 0.75rem auto;
+    max-width: 350px;
+    border: 3px solid rgba(255,255,255,0.5);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+}
+
+.progress-bar {
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    height: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.progress-fill {
+    background: 
+        linear-gradient(90deg, 
+            #FF6B6B 0%, #FF8E53 20%, 
+            #FFD93D 40%, #6BCF7F 60%, 
+            #4ECDC4 80%, #45B7D1 100%
+        );
+    height: 100%;
+    border-radius: 15px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+@media (max-width: 768px) {
+    .quiz-header {
+        padding: 0.75rem 0;
+        border-radius: 12px;
+        border-width: 2px;
+    }
+    
+    .quiz-title {
+        font-size: 1.5rem;
+        text-shadow: 
+            1px 1px 0px #FF6B6B,
+            2px 2px 0px #FF8E53,
+            3px 3px 0px #FFD93D;
+    }
+    
+    .quiz-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .quiz-header-content {
+        padding: 0 0.75rem;
+    }
+} 

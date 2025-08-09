@@ -1,0 +1,388 @@
+/* Register Form Styling */
+.register-left {
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.register-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-wrapper input:focus {
+    border-color: #FF6B9D;
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+    background: linear-gradient(135deg, #fff, #fff5f7);
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    font-size: 1.1rem;
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus + .input-icon {
+    color: #FF6B9D;
+    transform: scale(1.1);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #FF6B9D;
+    background: rgba(255, 107, 157, 0.1);
+}
+
+/* Grade Selection Styling */
+.grade-group {
+    margin-bottom: 2rem;
+}
+
+.grade-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.grade-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.75rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.grade-option:hover {
+    border-color: #FF6B9D;
+    background: linear-gradient(135deg, #fff, #fff5f7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.2);
+}
+
+.grade-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    z-index: 1;
+}
+
+.grade-checkmark {
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.grade-option input[type="radio"]:checked + .grade-checkmark {
+    background: linear-gradient(135deg, #FF6B9D, #FF8EAB);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+}
+
+.grade-option:hover .grade-checkmark {
+    color: #FF6B9D;
+}
+
+/* Register Button Styling */
+.register-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #FF6B9D, #FF8EAB);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: buttonGradient 3s infinite ease-in-out;
+}
+
+@keyframes buttonGradient {
+    0%, 100% { 
+        background: linear-gradient(135deg, #FF6B9D, #FF8EAB);
+    }
+    50% { 
+        background: linear-gradient(135deg, #FF8EAB, #FF6B9D);
+    }
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+}
+
+.register-btn:active {
+    transform: translateY(0);
+}
+
+.btn-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.loading-dots span {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: loadingDot 1.4s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes loadingDot {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Form Links Styling */
+.form-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.login-link {
+    color: #FF6B9D;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    color: #FF8EAB;
+    text-decoration: underline;
+}
+
+/* Mouse Tracking Cat Styling */
+.welcome-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.mouse-tracking-cat-container {
+    flex-shrink: 0;
+}
+
+.mouse-tracking-cat {
+    filter: drop-shadow(0 4px 8px rgba(192, 192, 192, 0.6));
+}
+
+/* Gümüş kedi özel stilleri */
+.mouse-tracking-cat ellipse {
+    stroke: #A0A0A0;
+    stroke-width: 1;
+}
+
+.mouse-tracking-cat path {
+    stroke: #A0A0A0;
+    stroke-width: 1;
+}
+
+.tracking-tail {
+    filter: drop-shadow(2px 2px 4px rgba(160, 160, 160, 0.4));
+}
+
+/* Welcome Message Container */
+.welcome-message {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+.welcome-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.welcome-subtitle {
+    font-size: 1rem;
+    color: #666;
+}
+
+.welcome-content {
+    text-align: left;
+}
+
+.welcome-message-text p {
+    margin: 0.75rem 0;
+    font-size: 1rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.welcome-message-text p::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #4ECDC4;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Mouse Tracking Cat Animations */
+.tracking-tail {
+    transform-origin: 140px 102px;
+    animation: trackingTailWag 2.5s infinite ease-in-out;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes trackingTailWag {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+}
+
+.tracking-head {
+    animation: trackingHeadMove 3.5s infinite ease-in-out;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes trackingHeadMove {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+.tracking-ear {
+    animation: trackingEarTwitch 3s infinite ease-in-out;
+}
+
+@keyframes trackingEarTwitch {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(4deg); }
+}
+
+/* Mouse tracking pupils - will be controlled by JavaScript */
+.tracking-pupil {
+    transition: transform 0.25s ease-out;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.tracking-pupil-left {
+    transform-origin: 55px 67px;
+}
+
+.tracking-pupil-right {
+    transform-origin: 85px 67px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .register-left, .register-right {
+        padding: 2rem;
+    }
+    
+    .register-form {
+        padding: 1.5rem;
+    }
+    
+    .grade-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .mouse-tracking-cat {
+        width: 80px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mouse-tracking-cat {
+        width: 60px;
+        height: 50px;
+    }
+} 

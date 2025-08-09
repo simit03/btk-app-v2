@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}AI Matematik Asistanı - Ana Sayfa{% endblock %}
+
+{% block head_extra_styles %}
+    <!-- Homepage CSS Modules -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="home-page">
+    <div class="home-page">
+        <!-- Floating Elements -->
+        <div class="floating-elements-container">
+            <div class="floating-element star-1">⭐</div>
+            <div class="floating-element star-2">🌟</div>
+            <div class="floating-element sparkle-1">✨</div>
+            <div class="floating-element sparkle-2">💫</div>
+            <div class="floating-element math-1">➕</div>
+            <div class="floating-element math-2">➖</div>
+            <div class="floating-element math-3">✖️</div>
+            <div class="floating-element math-4">➗</div>
+        </div>
+        
+        <div class="home-container">
+            <div class="home-wrapper">
+                
+                <!-- Hero Section (Only for non-logged in users) -->
+                {% if not session.get('logged_in') %}
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <div class="hero-left">
+                            <div class="hero-header">
+                                <h1 class="hero-title">AI Matematik Asistanı</h1>
+                                <p class="hero-subtitle">Yapay Zeka ile Matematik Artık Çok Kolay!</p>
+                            </div>
+                            
+                            <div class="hero-features">
+                                <div class="feature-item">
+                                    <div class="feature-icon">🤖</div>
+                                    <div class="feature-text">
+                                        <h3>Gemini AI Destekli</h3>
+                                        <p>Yapay zeka seninle birlikte öğrenir</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">🎯</div>
+                                    <div class="feature-text">
+                                        <h3>1-4. Sınıf Uyumlu</h3>
+                                        <p>Yaşına uygun matematik dersleri</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <div class="feature-icon">📈</div>
+                                    <div class="feature-text">
+                                        <h3>Öğrenmeyi 2'ye Katla</h3>
+                                        <p>Yapay zeka ile matematik başarını artır</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="hero-buttons">
+                                <a href="{{ url_for('pages.login') }}" class="cta-button primary">Giriş Yap</a>
+                                <a href="{{ url_for('pages.register') }}" class="cta-button secondary">Kayıt Ol</a>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-right">
+                            <div class="hero-cat-container">
+                                <!-- Ana sayfa kedi SVG -->
+                                <svg class="hero-cat" viewBox="0 0 180 160" width="150" height="120" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ana sayfa kedi - eğlenceli tasarım -->
+                                    
+                                    <!-- Kuyruk (ana sayfa kedi) -->
+                                    <path class="hero-tail" d="M140 90 Q160 85 165 95 Q170 105 155 110 Q140 115 135 105 Q130 95 140 90" fill="#FF6B9D" stroke="#FF4D8A" stroke-width="2"/>
+                                    <path d="M145 92 Q155 90 160 95 Q165 100 155 105 Q145 110 140 105 Q135 100 145 92" fill="#FF8EAB"/>
+                                    
+                                    <!-- Gövde (ana sayfa kedi) -->
+                                    <ellipse cx="80" cy="100" rx="45" ry="35" fill="#4ECDC4" stroke="#45B7D1" stroke-width="2"/>
+                                    <ellipse cx="80" cy="105" rx="35" ry="25" fill="#5ED5CC"/>
+                                    
+                                    <!-- Karın (ana sayfa kedi) -->
+                                    <ellipse cx="80" cy="110" rx="25" ry="15" fill="#6EDDD4"/>
+                                    <ellipse cx="80" cy="115" rx="20" ry="10" fill="#7EE5DC"/>
+                                    
+                                    <!-- Kafa (ana sayfa kedi) -->
+                                    <ellipse class="hero-head" cx="70" cy="60" rx="35" ry="30" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                                    <ellipse cx="70" cy="65" rx="30" ry="25" fill="#FFE55C"/>
+                                    
+                                    <!-- Kulaklar (ana sayfa kedi) -->
+                                    <path class="hero-ear hero-ear-left" d="M45 40 L55 15 L65 35 L55 45 Z" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                                    <path class="hero-ear hero-ear-right" d="M95 40 L85 15 L75 35 L85 45 Z" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+                                    
+                                    <!-- İç kulak (ana sayfa kedi) -->
+                                    <path d="M50 20 L55 30 L65 35 L55 40 Z" fill="#FF6B9D"/>
+                                    <path d="M90 20 L85 30 L75 35 L85 40 Z" fill="#FF6B9D"/>
+                                    
+                                    <!-- Gözler (ana sayfa kedi) -->
+                                    <ellipse class="hero-eye hero-eye-left" cx="55" cy="65" rx="10" ry="12" fill="#FFFFFF" stroke="#FFA500" stroke-width="2"/>
+                                    <ellipse class="hero-eye hero-eye-right" cx="85" cy="65" rx="10" ry="12" fill="#FFFFFF" stroke="#FFA500" stroke-width="2"/>
+                                    
+                                    <!-- Göz bebekleri (ana sayfa kedi) -->
+                                    <ellipse class="hero-pupil hero-pupil-left" cx="55" cy="67" rx="3.5" ry="4.5" fill="#000000"/>
+                                    <ellipse class="hero-pupil hero-pupil-right" cx="85" cy="67" rx="3.5" ry="4.5" fill="#000000"/>
+                                    
+                                    <!-- Göz parlaması (ana sayfa kedi) -->
+                                    <ellipse cx="53" cy="65" rx="2" ry="2.5" fill="#FFFFFF"/>
+                                    <ellipse cx="83" cy="65" rx="2" ry="2.5" fill="#FFFFFF"/>
+                                    
+                                    <!-- Burun (ana sayfa kedi) -->
+                                    <ellipse cx="70" cy="75" rx="2" ry="1.5" fill="#FF6B9D"/>
+                                    
+                                    <!-- Ağız (ana sayfa kedi) -->
+                                    <path d="M68 78 Q70 81 72 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    
+                                    <!-- Bıyıklar (ana sayfa kedi) -->
+                                    <path d="M40 72 Q30 74 40 76" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    <path d="M40 74 Q30 76 40 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    <path d="M40 76 Q30 78 40 80" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    <path d="M100 72 Q110 74 100 76" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    <path d="M100 74 Q110 76 100 78" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    <path d="M100 76 Q110 78 100 80" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+                                    
+                                    <!-- Matematik sembolleri -->
+                                    <text x="40" y="25" font-family="Arial" font-size="10" fill="#FFD700">+</text>
+                                    <text x="95" y="25" font-family="Arial" font-size="10" fill="#FFD700">×</text>
+                                    <text x="70" y="15" font-family="Arial" font-size="10" fill="#FFD700">÷</text>
+                                    <text x="60" y="35" font-family="Arial" font-size="8" fill="#4ECDC4">-</text>
+                                    
+                                    <!-- Balık -->
+                                    <ellipse cx="140" cy="85" rx="12" ry="6" fill="#FF6B6B" stroke="#E53E3E" stroke-width="3"/>
+                                    <ellipse cx="150" cy="85" rx="5" ry="4" fill="#FF6B6B"/>
+                                    <ellipse cx="135" cy="83" rx="2.5" ry="2.5" fill="#000000"/>
+                                    <path d="M133 85 Q125 90 133 95" stroke="#FF6B6B" stroke-width="3" fill="none"/>
+                                    
+                                    <!-- Çarpı işareti -->
+                                    <text x="150" y="25" font-family="Arial" font-size="18" fill="#FFD700" font-weight="bold">×</text>
+                                </svg>
+                                
+                                <!-- Öğrenme İçeriği Bölümü -->
+                                <div class="learning-content">
+                                    <div class="learning-card">
+                                        <h3>🎓 İlkokul Öğrencileri İçin</h3>
+                                        <div class="learning-features">
+                                            <div class="learning-item">
+                                                <span class="learning-icon">📚</span>
+                                                <span>Yaşa Uygun Dersler</span>
+                                            </div>
+                                            <div class="learning-item">
+                                                <span class="learning-icon">🎮</span>
+                                                <span>Eğlenceli Oyunlar</span>
+                                            </div>
+                                            <div class="learning-item">
+                                                <span class="learning-icon">🏆</span>
+                                                <span>Başarı Rozetleri</span>
+                                            </div>
+                                            <div class="learning-item">
+                                                <span class="learning-icon">📈</span>
+                                                <span>İlerleme Takibi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Grade Sections (Only for non-logged in users) -->
+                {% if not session.get('logged_in') %}
+                <div class="grade-sections">
+                    <h2 class="section-title">Sınıfını Seç ve Öğrenmeye Başla!</h2>
+                    
+                    <div class="grade-grid">
+                        <div class="grade-card">
+                            <div class="grade-icon">1️⃣</div>
+                            <h3>1. Sınıf</h3>
+                            <p>Toplama ve çıkarma öğren</p>
+                            <ul>
+                                <li>Sayıları tanı</li>
+                                <li>Toplama işlemi</li>
+                                <li>Çıkarma işlemi</li>
+                                <li>Basit problemler</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="grade-icon">2️⃣</div>
+                            <h3>2. Sınıf</h3>
+                            <p>Çarpma ve bölme öğren</p>
+                            <ul>
+                                <li>Çarpma tablosu</li>
+                                <li>Bölme işlemi</li>
+                                <li>Çift haneli sayılar</li>
+                                <li>Basit problemler</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="grade-icon">3️⃣</div>
+                            <h3>3. Sınıf</h3>
+                            <p>Kesirler ve ölçüler</p>
+                            <ul>
+                                <li>Kesirler</li>
+                                <li>Uzunluk ölçüleri</li>
+                                <li>Alan hesaplama</li>
+                                <li>Zaman problemleri</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="grade-card">
+                            <div class="grade-icon">4️⃣</div>
+                            <h3>4. Sınıf</h3>
+                            <p>Ondalık sayılar ve yüzde</p>
+                            <ul>
+                                <li>Ondalık sayılar</li>
+                                <li>Yüzde hesaplama</li>
+                                <li>Karmaşık problemler</li>
+                                <li>Matematik mantığı</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- User Dashboard Section (Only for logged in users) -->
+                {% if session.get('logged_in') %}
+                <div class="user-dashboard-section">
+                    <h2 class="section-title">Hoş Geldin, {{ session.get('first_name', 'Öğrenci') }}! 👋</h2>
+                    
+                    <div class="user-dashboard">
+                        <div class="user-info-card">
+                            <div class="user-avatar">
+                                <span class="avatar-emoji">👤</span>
+                            </div>
+                            <div class="user-details">
+                                <h3>{{ session.get('first_name', '') }} {{ session.get('last_name', '') }}</h3>
+                                <p class="user-grade">{{ session.get('grade', '') }}. Sınıf Öğrencisi</p>
+                                <p class="user-username">@{{ session.get('username', '') }}</p>
+                            </div>
+                            <div class="user-stats">
+                                <div class="stat-item">
+                                    <span class="stat-icon">✅</span>
+                                    <span class="stat-value" id="correctQuestions">0</span>
+                                    <span class="stat-label">Çözülen Soru</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">🏆</span>
+                                    <span class="stat-value" id="totalAchievements">0</span>
+                                    <span class="stat-label">Kupalarım</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">⭐</span>
+                                    <span class="stat-value" id="totalPoints">0</span>
+                                    <span class="stat-label">Toplam Puan</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">🎯</span>
+                                    <span class="stat-value" id="completedQuizzes">0</span>
+                                    <span class="stat-label">Quiz Tamamlandı</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <h3>Hızlı Erişim</h3>
+                            <div class="action-buttons">
+                                <a href="{{ url_for('pages.quiz') }}" class="action-btn primary">
+                                    <span class="action-icon">🎯</span>
+                                    <span>Quiz'e Başla</span>
+                                </a>
+                                <a href="{{ url_for('pages.profile') }}" class="action-btn secondary">
+                                    <span class="action-icon">👤</span>
+                                    <span>Profilim</span>
+                                </a>
+                                <a href="{{ url_for('pages.progress') }}" class="action-btn secondary">
+                                    <span class="action-icon">📈</span>
+                                    <span>İlerleme</span>
+                                </a>
+                                <a href="{{ url_for('pages.lesson_notes') }}" class="action-btn secondary">
+                                    <span class="action-icon">📚</span>
+                                    <span>Ders Notları</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Features Section (Only for non-logged in users) -->
+                {% if not session.get('logged_in') %}
+                <div class="features-section">
+                    <h2 class="section-title">Neden AI Matematik Asistanı?</h2>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Akıllı Öğrenme Sistemi</h3>
+                            <p>AI senin hızına göre ders ayarlar</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h3>Öğrenmeyi 2'ye Katla</h3>
+                            <p>Yapay zeka ile matematik başarını artır</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>İlerleme Takibi</h3>
+                            <p>Gelişimini grafiklerle gör</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h3>Başarı Rozetleri</h3>
+                            <p>Başarıların için rozetler kazan</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🤖</div>
+                            <h3>Gemini AI Desteği</h3>
+                            <p>Google'ın en gelişmiş AI'ı</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>Eğlenceli Tasarım</h3>
+                            <p>Renkli ve çocuk dostu arayüz</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- CTA Section (Only for non-logged in users) -->
+                {% if not session.get('logged_in') %}
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <h2>Hemen Başla!</h2>
+                        <p>Matematik artık çok kolay ve eğlenceli</p>
+                        <div class="cta-buttons">
+                            <a href="{{ url_for('pages.register') }}" class="cta-button primary">Ücretsiz Kayıt Ol</a>
+                            <a href="{{ url_for('pages.login') }}" class="cta-button secondary">Giriş Yap</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body_extra_scripts %}
+    <!-- Homepage JavaScript Modules -->
+    <script src="{{ url_for('static', filename='js/home/home.js') }}"></script>
+{% endblock %}
+
