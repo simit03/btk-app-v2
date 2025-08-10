@@ -145,3 +145,19 @@ img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
 }
+
+/* Global responsive typography and layout tweaks */
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .main-content { padding: 0 0.75rem; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 14px; }
+    .main-content { padding: 0 0.5rem; }
+}
+
+/* Prevent inputs from overflowing on small screens */
+input, select, textarea, button {
+    max-width: 100%;
+}

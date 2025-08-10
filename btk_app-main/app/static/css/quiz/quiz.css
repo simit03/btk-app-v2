@@ -475,7 +475,7 @@ body, .quiz-container {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .quiz-container {
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
         background-size: 
             50px 50px, 50px 50px, 40px 40px, 40px 40px,
             100px 100px, 125px 125px, 90px 90px,
@@ -507,10 +507,7 @@ body, .quiz-container {
         margin: 0.25rem 0;
     }
     
-    .ai-chat-window {
-        height: 300px;
-        margin-top: 1rem;
-    }
+    .ai-chat-window { height: 300px; margin-top: 1rem; }
 }
 
 /* ===== ACCESSIBILITY ===== */

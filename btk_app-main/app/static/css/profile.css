@@ -454,54 +454,18 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .profile-page {
-        padding: 1rem;
-    }
-    
-    .profile-container {
-        border-radius: 20px;
-    }
-    
-    .profile-header {
-        padding: 1.5rem;
-    }
-    
-    .profile-title {
-        font-size: 2rem;
-    }
-    
-    .profile-content {
-        padding: 1.5rem;
-    }
-    
-    .profile-card {
-        padding: 1.5rem;
-    }
-    
-    .profile-stats {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    .edit-form {
-        grid-template-columns: 1fr;
-    }
-    
-    .report-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .topic-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .action-buttons {
-        grid-template-columns: 1fr;
-    }
-    
-    .action-btn {
-        padding: 1.25rem;
-    }
+    .profile-page { padding: 0.75rem; }
+    .profile-container { border-radius: 16px; }
+    .profile-header { padding: 1.25rem; }
+    .profile-title { font-size: 1.8rem; }
+    .profile-content { padding: 1rem; }
+    .profile-card { padding: 1rem; }
+    .profile-stats { grid-template-columns: 1fr; gap: 0.75rem; }
+    .edit-form { grid-template-columns: 1fr; }
+    .report-cards { grid-template-columns: 1fr; }
+    .topic-cards { grid-template-columns: 1fr; }
+    .action-buttons { grid-template-columns: 1fr; }
+    .action-btn { padding: 1rem; }
 }
 
 @media (max-width: 480px) {

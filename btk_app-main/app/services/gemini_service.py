@@ -17,7 +17,7 @@ class GeminiService:
         
         if not self.api_key:
             print("❌ GEMINI_API_KEY environment variable not found!")
-            raise ValueError("GEMINI_API_KEY environment variable is required")
+            raise ValueError(self.api_key)
         
         print(f"✅ Gemini service initialized with API key: {self.api_key[:10]}...")
     

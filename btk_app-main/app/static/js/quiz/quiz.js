@@ -17,6 +17,7 @@ class QuizApp {
         this.isQuizActive = false;
         this.quizHeader = null;
         this.aiChat = null;
+         this.answeredQuestions = [];
         
         this.initializeQuiz();
     }
@@ -34,14 +35,38 @@ class QuizApp {
             if (sessionResponse.ok) {
                 const sessionData = await sessionResponse.json();
                 this.quizSessionId = sessionData.data.session_id;
+            } else {
+                let errorPayload = null;
+                try { errorPayload = await sessionResponse.json(); } catch (_) {}
+                const message = (errorPayload && (errorPayload.message || errorPayload.error)) || sessionResponse.statusText || 'Quiz oturumu başlatılamadı.';
+                console.error('Quiz oturumu başlatılamadı:', message);
+                const quizContainer = document.querySelector('.quiz-container');
+                if (quizContainer) {
+                    quizContainer.innerHTML = `
+                        <div class="quiz-error-container">
+                            <div class="quiz-error-content">
+                                <div class="error-icon">❌</div>
+                                <h2>Quiz Başlatılamadı</h2>
+                                <p>${message}</p>
+                                <div class="error-actions">
+                                    <button onclick="window.location.href='/profile'" class="btn-primary">Profil Sayfasına Git</button>
+                                    <button onclick="window.location.reload()" class="btn-secondary">Sayfayı Yenile</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                return;
             }
             
             // Soruları getir
             const response = await fetch('/api/quiz/questions?limit=20');
-            if (response.ok) {
-                const data = await response.json();
-                this.questions = data.data.questions;
+            let payload = null;
+            try { payload = await response.json(); } catch (_) { payload = null; }
+            if (response.ok && payload && payload.data) {
+                this.questions = payload.data.questions;
                 this.userAnswers = new Array(this.questions.length).fill(null);
+                 this.answeredQuestions = new Array(this.questions.length).fill(false);
                 
                 // Quiz header'ı başlat
                 this.quizHeader = new QuizHeader();
@@ -51,8 +76,8 @@ class QuizApp {
                 console.log('Quiz initialized with', this.questions.length, 'questions');
                 
                 // Hariç tutulan soru sayısını göster
-                if (data.data.excluded_questions > 0) {
-                    this.showExcludedQuestionsInfo(data.data.excluded_questions);
+                if (payload.data.excluded_questions > 0) {
+                    this.showExcludedQuestionsInfo(payload.data.excluded_questions);
                 }
                 
                 this.displayQuestion();
@@ -61,7 +86,8 @@ class QuizApp {
                 // Initialize AI Chat
                 this.initializeAIChat();
             } else {
-                console.error('Sorular yüklenemedi:', data.message);
+                const message = (payload && (payload.message || payload.error)) || response.statusText || 'Sorular yüklenemedi.';
+                console.error('Sorular yüklenemedi:', message);
                 
                 // Hata mesajını göster
                 const quizContainer = document.querySelector('.quiz-container');
@@ -70,7 +96,7 @@ class QuizApp {
                         <div class="quiz-error-content">
                             <div class="error-icon">❌</div>
                             <h2>Quiz Başlatılamadı</h2>
-                            <p>${data.message}</p>
+                            <p>${message}</p>
                             <div class="error-actions">
                                 <button onclick="window.location.href='/profile'" class="btn-primary">Profil Sayfasına Git</button>
                                 <button onclick="window.location.reload()" class="btn-secondary">Sayfayı Yenile</button>
@@ -118,6 +144,18 @@ class QuizApp {
             optionDiv.addEventListener('click', () => this.selectOption(key));
             optionsContainer.appendChild(optionDiv);
         });
+
+         // Daha önce seçili cevabı görsel olarak işaretle
+         const previousAnswer = this.userAnswers[this.currentQuestionIndex];
+         if (previousAnswer) {
+             const optionItems = document.querySelectorAll('.option-item');
+             optionItems.forEach(item => {
+                 const letterEl = item.querySelector('.option-letter');
+                 if (letterEl && letterEl.textContent.trim() === previousAnswer) {
+                     item.classList.add('selected');
+                 }
+             });
+         }
         
         // Navigasyon bilgilerini güncelle
         document.querySelector('.quiz-nav-info').textContent = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
@@ -125,22 +163,46 @@ class QuizApp {
         // Butonları güncelle
         document.getElementById('prevBtn').disabled = this.currentQuestionIndex === 0;
         document.getElementById('nextBtn').disabled = this.currentQuestionIndex === this.questions.length - 1;
+
+         // Sorunun cevaplanma durumuna göre etkileşimi ayarla
+         if (this.answeredQuestions[this.currentQuestionIndex]) {
+             this.disableInteractionsForCurrentQuestion();
+         } else {
+             this.enableInteractionsForCurrentQuestion();
+         }
     }
     
     selectOption(option) {
+        // Eğer soru zaten cevaplandıysa seçim yapılmasın
+        if (this.answeredQuestions[this.currentQuestionIndex]) {
+            return;
+        }
+
         // Önceki seçimi temizle
         document.querySelectorAll('.option-item').forEach(item => {
             item.classList.remove('selected');
         });
-        
-        // Yeni seçimi işaretle
-        event.target.closest('.option-item').classList.add('selected');
-        
+
+        // Yeni seçimi işaretle (option harfine göre)
+        const optionItems = document.querySelectorAll('.option-item');
+        for (const item of optionItems) {
+            const letterEl = item.querySelector('.option-letter');
+            if (letterEl && letterEl.textContent.trim() === option) {
+                item.classList.add('selected');
+                break;
+            }
+        }
+
         // Cevabı kaydet
         this.userAnswers[this.currentQuestionIndex] = option;
     }
     
     async submitAnswer() {
+        // Eğer bu soru daha önce cevaplandıysa tekrar gönderme
+        if (this.answeredQuestions[this.currentQuestionIndex]) {
+            return;
+        }
+
         if (this.userAnswers[this.currentQuestionIndex] === null) {
             alert('Lütfen bir seçenek seçin!');
             return;
@@ -150,6 +212,10 @@ class QuizApp {
         const userAnswer = this.userAnswers[this.currentQuestionIndex];
         const isCorrect = userAnswer === question.correct_answer;
         
+        // Çift tıklamaları engellemek için hemen kilitle
+        this.answeredQuestions[this.currentQuestionIndex] = true;
+        this.disableInteractionsForCurrentQuestion();
+
         if (isCorrect) {
             this.correctAnswers++;
             this.showCorrectAnimation();
@@ -218,6 +284,30 @@ class QuizApp {
             this.displayQuestion();
         }
     }
+
+     enableInteractionsForCurrentQuestion() {
+         const submitBtn = document.getElementById('submitBtn');
+         if (submitBtn) {
+             submitBtn.disabled = false;
+             submitBtn.classList.remove('btn-disabled');
+         }
+         document.querySelectorAll('.option-item').forEach(item => {
+             item.style.pointerEvents = 'auto';
+             item.style.opacity = '1';
+         });
+     }
+
+     disableInteractionsForCurrentQuestion() {
+         const submitBtn = document.getElementById('submitBtn');
+         if (submitBtn) {
+             submitBtn.disabled = true;
+             submitBtn.classList.add('btn-disabled');
+         }
+         document.querySelectorAll('.option-item').forEach(item => {
+             item.style.pointerEvents = 'none';
+             item.style.opacity = '0.7';
+         });
+     }
     
     async showResults() {
         // Quiz'i tamamla

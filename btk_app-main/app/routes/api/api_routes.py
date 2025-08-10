@@ -326,7 +326,22 @@ def submit_quiz_answer():
         db = DatabaseConnection()
         
         if db.connection:
-            cursor = db.connection.cursor()
+            cursor = db.connection.cursor(dictionary=True)
+            # Aynı oturumda aynı soruyu tekrar kaydetmeyi engelle
+            cursor.execute("""
+                SELECT id FROM user_progress 
+                WHERE user_id = %s AND quiz_session_id = %s AND question_id = %s
+                LIMIT 1
+            """, (user_id, session_id, question_id))
+            existing = cursor.fetchone()
+            if existing:
+                cursor.close()
+                return jsonify({
+                    'success': False,
+                    'message': 'Bu soru bu oturumda zaten cevaplandı.'
+                }), 409
+
+            # İlk kez gönderiliyorsa kaydet
             cursor.execute("""
                 INSERT INTO user_progress (user_id, question_id, user_answer, is_correct, quiz_session_id)
                 VALUES (%s, %s, %s, %s, %s)

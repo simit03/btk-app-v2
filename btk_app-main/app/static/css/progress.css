@@ -515,51 +515,15 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .progress-page {
-        padding: 10px;
-    }
-    
-    .progress-container {
-        border-radius: 15px;
-    }
-    
-    .progress-header {
-        padding: 20px;
-    }
-    
-    .progress-title {
-        font-size: 2rem;
-    }
-    
-    .progress-content {
-        padding: 20px;
-    }
-    
-    .stats-overview {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .daily-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .topic-performance-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .weekly-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .progress-table {
-        font-size: 0.8rem;
-    }
-    
-    .progress-table th,
-    .progress-table td {
-        padding: 8px 10px;
-    }
+    .progress-page { padding: 10px; }
+    .progress-container { border-radius: 14px; }
+    .progress-header { padding: 16px; }
+    .progress-title { font-size: 1.8rem; }
+    .progress-content { padding: 16px; }
+    .stats-overview { grid-template-columns: 1fr; gap: 12px; }
+    .weekly-cards { grid-template-columns: 1fr; }
+    .progress-table { font-size: 0.85rem; }
+    .progress-table th, .progress-table td { padding: 8px 10px; }
 }
 
 /* Animation Classes */

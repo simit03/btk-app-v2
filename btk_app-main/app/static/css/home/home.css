@@ -202,14 +202,8 @@ body, .home-container {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    .home-container {
-        padding: 1rem;
-    }
-    
-    .home-wrapper {
-        padding: 2rem 1rem;
-        margin: 1rem;
-    }
+    .home-container { padding: 0; }
+    .home-wrapper { padding: 1rem; margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
