@@ -1,0 +1,572 @@
+/* Progress Mobile CSS */
+/* Mobile-first responsive design for the progress page */
+
+@media (max-width: 768px) {
+    .progress-page {
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    .progress-container {
+        padding: 0 15px;
+    }
+
+    .progress-header {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .progress-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .progress-subtitle {
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+
+    .progress-content {
+        gap: 25px;
+    }
+
+    /* Stats Overview */
+    .stats-overview {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .stat-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .stat-info h3 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Achievements Section */
+    .achievements-section {
+        padding: 20px 0;
+    }
+
+    .achievements-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .achievements-container {
+        padding: 0;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .achievement-item {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .achievement-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .achievement-title {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .achievement-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    /* Weekly Summary */
+    .weekly-summary-section {
+        padding: 20px 0;
+    }
+
+    .weekly-summary-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .weekly-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .weekly-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .weekly-date {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .weekly-stats {
+        gap: 15px;
+    }
+
+    .weekly-stat {
+        text-align: center;
+    }
+
+    .weekly-stat-value {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .weekly-stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Detailed Progress Table */
+    .detailed-progress-section {
+        padding: 20px 0;
+    }
+
+    .detailed-progress-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .detailed-table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .detailed-table {
+        min-width: 600px;
+        font-size: 0.85rem;
+    }
+
+    .detailed-table th,
+    .detailed-table td {
+        padding: 12px 8px;
+    }
+
+    .detailed-table th {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    /* Topic Detail Table */
+    .topic-detail-section {
+        padding: 20px 0;
+    }
+
+    .topic-detail-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .topic-detail-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .topic-detail-table {
+        min-width: 500px;
+        font-size: 0.85rem;
+    }
+
+    .topic-detail-table th,
+    .topic-detail-table td {
+        padding: 12px 8px;
+    }
+
+    .topic-detail-table th {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    /* Wrong Answers Section */
+    .wrong-answers-section {
+        padding: 20px 0;
+    }
+
+    .wrong-answers-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .wrong-answers-container {
+        padding: 0;
+    }
+
+    .wrong-answers-list {
+        gap: 15px;
+    }
+
+    .wrong-answer-item {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .wrong-answer-question {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .wrong-answer-options {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .wrong-answer-option {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .wrong-answer-meta {
+        gap: 15px;
+        font-size: 0.8rem;
+    }
+
+    /* Loading States */
+    .loading-container {
+        padding: 30px 20px;
+    }
+
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
+    }
+
+    .loading-container p {
+        font-size: 1rem;
+    }
+
+    /* Modal */
+    .wrong-answer-modal {
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 500px;
+        border-radius: 16px;
+    }
+
+    .modal-header {
+        padding: 20px 20px 15px;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-close {
+        font-size: 1.5rem;
+        width: 35px;
+        height: 35px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-question {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .modal-options {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .modal-option {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+
+    .modal-date,
+    .modal-topic {
+        font-size: 0.9rem;
+    }
+
+    .modal-date-icon,
+    .modal-topic-icon {
+        font-size: 1rem;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-container {
+        padding: 0 10px;
+    }
+
+    .progress-title {
+        font-size: 1.6rem;
+    }
+
+    .progress-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .stats-overview {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 18px 12px;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .weekly-cards {
+        gap: 12px;
+    }
+
+    .detailed-table,
+    .topic-detail-table {
+        font-size: 0.8rem;
+    }
+
+    .detailed-table th,
+    .detailed-table td,
+    .topic-detail-table th,
+    .topic-detail-table td {
+        padding: 10px 6px;
+    }
+
+    .wrong-answer-item {
+        padding: 18px 12px;
+    }
+
+    .modal-content {
+        width: 98%;
+        margin: 10px;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .modal-footer {
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .progress-content {
+        gap: 20px;
+    }
+
+    .stats-overview {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 12px;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+    }
+
+    .weekly-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (max-width: 768px) {
+    .stat-card:hover,
+    .achievement-item:hover,
+    .weekly-card:hover,
+    .wrong-answer-item:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card:active,
+    .achievement-item:active,
+    .weekly-card:active,
+    .wrong-answer-item:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    .modal-close:active {
+        transform: scale(0.9);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* High DPI Displays */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+       (max-width: 768px) and (min-resolution: 192dpi) {
+    .stat-icon,
+    .achievement-icon,
+    .modal-date-icon,
+    .modal-topic-icon {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Mobile Animations */
+@media (max-width: 768px) {
+    .progress-header {
+        animation: fadeInMobile 0.6s ease-out;
+    }
+
+    .stats-overview {
+        animation: slideUpMobile 0.8s ease-out;
+    }
+
+    .achievements-section,
+    .weekly-summary-section,
+    .detailed-progress-section,
+    .topic-detail-section,
+    .wrong-answers-section {
+        animation: fadeInMobile 0.6s ease-out;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+    }
+
+    .stat-card {
+        animation: slideUpMobile 0.6s ease-out;
+        animation-fill-mode: both;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+}
+
+/* Mobile Safe Area Support */
+@media (max-width: 768px) {
+    .progress-page {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .progress-container {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+
+    .wrong-answer-modal {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+/* Mobile Focus Styles */
+@media (max-width: 768px) {
+    .stat-card:focus,
+    .achievement-item:focus,
+    .weekly-card:focus,
+    .wrong-answer-item:focus,
+    .modal-close:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+
+    .detailed-table:focus,
+    .topic-detail-table:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 4px;
+    }
+}
+
+/* Mobile Scrollbar Styling */
+@media (max-width: 768px) {
+    .detailed-table-container::-webkit-scrollbar,
+    .topic-detail-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .detailed-table-container::-webkit-scrollbar-track,
+    .topic-detail-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .detailed-table-container::-webkit-scrollbar-thumb,
+    .topic-detail-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+
+    .detailed-table-container::-webkit-scrollbar-thumb:hover,
+    .topic-detail-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Mobile Print Styles */
+@media (max-width: 768px) and print {
+    .progress-page {
+        background: white !important;
+        color: black !important;
+    }
+
+    .stat-card,
+    .achievement-item,
+    .weekly-card,
+    .wrong-answer-item {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+
+    .detailed-table-container,
+    .topic-detail-container {
+        overflow: visible !important;
+        box-shadow: none !important;
+    }
+
+    .wrong-answer-modal {
+        display: none !important;
+    }
+}

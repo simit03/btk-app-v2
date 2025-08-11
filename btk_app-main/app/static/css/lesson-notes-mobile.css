@@ -1,0 +1,572 @@
+/* Lesson Notes Mobile CSS */
+/* Mobile-first responsive design for the lesson notes page */
+
+@media (max-width: 768px) {
+    .lesson-notes-page {
+        padding: 0;
+        min-height: 100vh;
+    }
+    
+    .lesson-notes-container {
+        padding: 0 15px;
+    }
+    
+    .lesson-notes-wrapper {
+        gap: 1.5rem;
+    }
+    
+    /* Header Mobile */
+    .lesson-notes-header-container {
+        padding: 1rem 0;
+    }
+    
+    .lesson-notes-header {
+        text-align: center;
+    }
+    
+    .lesson-notes-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        color: #FFD700;
+    }
+    
+    .lesson-notes-subtitle {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #fff;
+        opacity: 0.9;
+    }
+    
+    /* Content Layout Mobile */
+    .lesson-notes-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .lesson-notes-left {
+        order: 1;
+        width: 100%;
+    }
+    
+    .lesson-notes-right {
+        order: 2;
+        width: 100%;
+    }
+    
+    /* Lesson Content Mobile */
+    .lesson-content-container {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin-bottom: 1.5rem;
+    }
+    
+    .lesson-content {
+        text-align: left;
+    }
+    
+    .lesson-section {
+        margin-bottom: 2rem;
+    }
+    
+    .lesson-section:last-child {
+        margin-bottom: 0;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+        color: #FFD700;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .section-content {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+    
+    .section-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .section-content p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .section-content ul,
+    .section-content ol {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+    
+    .section-content li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .section-content strong {
+        color: #FFD700;
+        font-weight: bold;
+    }
+    
+    .section-content em {
+        color: #FFA500;
+        font-style: italic;
+    }
+    
+    .section-content code {
+        background: rgba(255, 255, 255, 0.1);
+        color: #FFD700;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+    }
+    
+    .section-content blockquote {
+        border-left: 4px solid #FFD700;
+        padding-left: 1rem;
+        margin: 1rem 0;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 215, 0, 0.1);
+        padding: 1rem;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    /* Navigation Mobile */
+    .lesson-navigation-container {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: sticky;
+        top: 20px;
+    }
+    
+    .lesson-navigation {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .nav-section {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.8rem;
+    }
+    
+    .nav-section:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .nav-section-title {
+        font-size: 1.1rem;
+        color: #FFD700;
+        margin-bottom: 0.8rem;
+        font-weight: bold;
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .nav-link {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+    }
+    
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 215, 0, 0.3);
+        color: #FFD700;
+    }
+    
+    .nav-link.active {
+        background: rgba(255, 215, 0, 0.2);
+        border-color: #FFD700;
+        color: #FFD700;
+        font-weight: bold;
+    }
+    
+    /* Progress Mobile */
+    .lesson-progress-container {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .progress-title {
+        font-size: 1rem;
+        color: #FFD700;
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+    
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #FFD700, #FFA500);
+        transition: width 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .progress-text {
+        font-size: 0.9rem;
+        color: #fff;
+        text-align: center;
+        opacity: 0.8;
+    }
+    
+    /* Actions Mobile */
+    .lesson-actions-container {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .action-btn {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .action-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+    }
+    
+    .action-btn.primary {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #000;
+        border-color: transparent;
+    }
+    
+    .action-btn.primary:hover {
+        background: linear-gradient(135deg, #FFA500, #FF8C00);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .action-btn.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .action-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-notes-container {
+        padding: 0 10px;
+    }
+    
+    .lesson-notes-wrapper {
+        gap: 1.2rem;
+    }
+    
+    .lesson-notes-header-container {
+        padding: 0.8rem 0;
+    }
+    
+    .lesson-notes-title {
+        font-size: 1.6rem;
+    }
+    
+    .lesson-notes-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .lesson-content-container {
+        padding: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-content {
+        font-size: 0.9rem;
+    }
+    
+    .section-content ul,
+    .section-content ol {
+        padding-left: 1.2rem;
+    }
+    
+    .lesson-navigation-container {
+        padding: 0.8rem;
+    }
+    
+    .nav-section-title {
+        font-size: 1rem;
+    }
+    
+    .nav-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .lesson-progress-container {
+        padding: 0.8rem;
+    }
+    
+    .progress-title {
+        font-size: 0.9rem;
+    }
+    
+    .progress-text {
+        font-size: 0.8rem;
+    }
+    
+    .action-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .lesson-notes-content {
+        flex-direction: row;
+        gap: 1.2rem;
+        align-items: flex-start;
+    }
+    
+    .lesson-notes-left {
+        order: 1;
+        width: 60%;
+    }
+    
+    .lesson-notes-right {
+        order: 2;
+        width: 40%;
+    }
+    
+    .lesson-notes-wrapper {
+        gap: 1.2rem;
+    }
+    
+    .lesson-notes-header-container {
+        padding: 0.8rem 0;
+    }
+    
+    .lesson-notes-title {
+        font-size: 1.6rem;
+    }
+    
+    .lesson-notes-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .lesson-content-container {
+        padding: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-content {
+        font-size: 0.9rem;
+    }
+    
+    .lesson-navigation-container {
+        padding: 0.8rem;
+    }
+    
+    .nav-section-title {
+        font-size: 1rem;
+    }
+    
+    .nav-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: transparent;
+        color: #fff;
+    }
+    
+    .action-btn:hover {
+        transform: none;
+    }
+    
+    .action-btn.primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .nav-link:active {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 215, 0, 0.5);
+        color: #FFD700;
+    }
+    
+    .action-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .action-btn.primary:active {
+        transform: scale(0.98);
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .section-title {
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+    
+    .nav-section-title {
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+}
+
+/* Mobile Animations */
+@media (max-width: 768px) {
+    .lesson-notes-header-container {
+        animation: fadeInMobile 0.6s ease-out;
+    }
+    
+    .lesson-content-container,
+    .lesson-navigation-container {
+        animation: slideUpMobile 0.4s ease-out;
+    }
+    
+    .lesson-section {
+        animation: fadeInMobile 0.3s ease-out;
+    }
+    
+    @keyframes fadeInMobile {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes slideUpMobile {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Mobile Safe Area Support */
+@supports (padding: max(0px)) {
+    @media (max-width: 768px) {
+        .lesson-notes-page {
+            padding-left: max(0px, env(safe-area-inset-left));
+            padding-right: max(0px, env(safe-area-inset-right));
+        }
+        
+        .lesson-notes-container {
+            padding-left: max(15px, env(safe-area-inset-left) + 15px);
+            padding-right: max(15px, env(safe-area-inset-right) + 15px);
+        }
+    }
+}
+
+/* Print Styles for Mobile */
+@media print {
+    .lesson-notes-page {
+        background: white;
+        color: black;
+    }
+    
+    .lesson-navigation-container,
+    .lesson-actions-container {
+        display: none;
+    }
+    
+    .lesson-content-container {
+        background: white;
+        border: 1px solid #ddd;
+        box-shadow: none;
+    }
+    
+    .section-title {
+        color: #333;
+        border-bottom-color: #ddd;
+    }
+    
+    .section-content {
+        color: #333;
+    }
+    
+    .section-content strong {
+        color: #333;
+    }
+    
+    .section-content em {
+        color: #666;
+    }
+    
+    .section-content code {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+    
+    .section-content blockquote {
+        background: #f9f9f9;
+        border-left-color: #ddd;
+        color: #666;
+    }
+}

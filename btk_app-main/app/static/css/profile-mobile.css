@@ -1,0 +1,631 @@
+/* Profile Mobile CSS */
+/* Mobile-first responsive design for the profile page */
+
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    .profile-container {
+        padding: 0 15px;
+    }
+
+    .profile-header {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .profile-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .profile-subtitle {
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+
+    .profile-content {
+        gap: 25px;
+    }
+
+    /* Profile Card */
+    .profile-card {
+        padding: 25px 20px;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .profile-avatar {
+        margin-bottom: 20px;
+    }
+
+    .avatar-emoji {
+        font-size: 4rem;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        color: white;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .profile-info {
+        margin-bottom: 25px;
+    }
+
+    .user-name {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .user-username {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .user-grade {
+        font-size: 0.9rem;
+        color: #888;
+    }
+
+    .profile-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 15px 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-icon {
+        font-size: 1.8rem;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #333;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        color: #666;
+        display: block;
+    }
+
+    /* Profile Edit Section */
+    .profile-edit-section {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .profile-edit-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+
+    .edit-form {
+        gap: 20px;
+    }
+
+    .form-group {
+        text-align: left;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 600;
+    }
+
+    .edit-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 1rem;
+        background: white;
+        transition: border-color 0.3s ease;
+    }
+
+    .edit-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .save-btn {
+        width: 100%;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .save-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    }
+
+    /* Quiz Report Section */
+    .quiz-report-section {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .quiz-report-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+
+    .report-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .report-card {
+        padding: 20px 15px;
+        border-radius: 12px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .report-card.correct {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border: 1px solid #c3e6cb;
+    }
+
+    .report-card.incorrect {
+        background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+        border: 1px solid #f5c6cb;
+    }
+
+    .report-card.total {
+        background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+        border: 1px solid #bee5eb;
+    }
+
+    .report-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .report-info {
+        flex: 1;
+        text-align: left;
+    }
+
+    .report-info h4 {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .report-value {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #333;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .report-label {
+        font-size: 0.8rem;
+        color: #666;
+    }
+
+    /* Achievements Section */
+    .achievements-section {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .achievements-section h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+
+    .achievements-container {
+        padding: 0;
+    }
+
+    .achievements-loading {
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #667eea;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .achievements-loading p {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    /* Profile Actions */
+    .profile-actions {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .profile-actions h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+
+    .action-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        min-height: 56px;
+    }
+
+    .action-btn.primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+    }
+
+    .action-btn.secondary {
+        background: linear-gradient(135deg, #6c757d, #495057);
+        color: white;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-icon {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 0 10px;
+    }
+
+    .profile-title {
+        font-size: 1.6rem;
+    }
+
+    .profile-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .profile-card {
+        padding: 20px 15px;
+    }
+
+    .avatar-emoji {
+        font-size: 3.5rem;
+        width: 70px;
+        height: 70px;
+    }
+
+    .user-name {
+        font-size: 1.4rem;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-item {
+        padding: 12px 8px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .profile-edit-section,
+    .quiz-report-section,
+    .achievements-section,
+    .profile-actions {
+        padding: 20px 15px;
+    }
+
+    .edit-input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .save-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .report-cards {
+        gap: 12px;
+    }
+
+    .report-card {
+        padding: 15px 12px;
+    }
+
+    .report-icon {
+        font-size: 1.8rem;
+    }
+
+    .report-value {
+        font-size: 1.2rem;
+    }
+
+    .action-buttons {
+        gap: 12px;
+    }
+
+    .action-btn {
+        padding: 15px 15px;
+        font-size: 0.9rem;
+        min-height: 50px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .profile-content {
+        gap: 20px;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 15px;
+    }
+
+    .report-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (max-width: 768px) {
+    .stat-item:hover,
+    .report-card:hover,
+    .action-btn:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-item:active,
+    .report-card:active,
+    .action-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    .save-btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+
+    .edit-input:active {
+        border-color: #667eea;
+    }
+}
+
+/* High DPI Displays */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+       (max-width: 768px) and (min-resolution: 192dpi) {
+    .avatar-emoji,
+    .stat-icon,
+    .report-icon,
+    .action-icon {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Mobile Animations */
+@media (max-width: 768px) {
+    .profile-header {
+        animation: fadeInMobile 0.6s ease-out;
+    }
+
+    .profile-card {
+        animation: slideUpMobile 0.8s ease-out;
+    }
+
+    .profile-edit-section,
+    .quiz-report-section,
+    .achievements-section,
+    .profile-actions {
+        animation: fadeInMobile 0.6s ease-out;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+    }
+
+    .stat-item {
+        animation: slideUpMobile 0.6s ease-out;
+        animation-fill-mode: both;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 0.1s; }
+    .stat-item:nth-child(2) { animation-delay: 0.2s; }
+    .stat-item:nth-child(3) { animation-delay: 0.3s; }
+    .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .report-card {
+        animation: slideUpMobile 0.6s ease-out;
+        animation-fill-mode: both;
+    }
+
+    .report-card:nth-child(1) { animation-delay: 0.1s; }
+    .report-card:nth-child(2) { animation-delay: 0.2s; }
+    .report-card:nth-child(3) { animation-delay: 0.3s; }
+}
+
+/* Mobile Safe Area Support */
+@media (max-width: 768px) {
+    .profile-page {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .profile-container {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+    }
+}
+
+/* Mobile Focus Styles */
+@media (max-width: 768px) {
+    .stat-item:focus,
+    .report-card:focus,
+    .action-btn:focus,
+    .save-btn:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+
+    .edit-input:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+}
+
+/* Mobile Form Validation */
+@media (max-width: 768px) {
+    .edit-input:invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+
+    .edit-input:valid {
+        border-color: #28a745;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    }
+
+    .form-group.error .edit-input {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+
+    .form-group.success .edit-input {
+        border-color: #28a745;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    }
+}
+
+/* Mobile Loading States */
+@media (max-width: 768px) {
+    .save-btn.loading {
+        position: relative;
+        color: transparent;
+    }
+
+    .save-btn.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        border: 2px solid transparent;
+        border-top: 2px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+/* Mobile Print Styles */
+@media (max-width: 768px) and print {
+    .profile-page {
+        background: white !important;
+        color: black !important;
+    }
+
+    .profile-card,
+    .profile-edit-section,
+    .quiz-report-section,
+    .achievements-section,
+    .profile-actions {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+
+    .avatar-emoji {
+        background: #f8f9fa !important;
+        color: #333 !important;
+    }
+
+    .action-btn {
+        border: 1px solid #ddd !important;
+        background: #f8f9fa !important;
+        color: #333 !important;
+    }
+}

@@ -5,6 +5,9 @@
 {% block head_extra_styles %}
     <!-- Register CSS Modules -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/register/register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register/register-mobile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register/register-header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register/register-form.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -30,47 +33,67 @@
                     <!-- Left Side - Registration Form -->
                     <div class="register-left">
                         <div class="register-form-container">
-                            <form class="register-form" id="registerForm">
+                            <form class="register-form" id="registerForm" method="POST" action="{{ url_for('pages.register') }}">
                                 <div class="form-group">
                                     <label for="username">Kullanıcı Adı</label>
                                     <div class="input-wrapper">
-                                        <input type="text" id="username" name="username" required>
+                                        <input type="text" id="username" name="username" required placeholder="Kullanıcı adınızı girin">
                                         <div class="input-icon">👤</div>
                                     </div>
+                                    <div class="error-message" id="username-error"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="firstName">Adı</label>
                                     <div class="input-wrapper">
-                                        <input type="text" id="firstName" name="firstName" required>
+                                        <input type="text" id="firstName" name="firstName" required placeholder="Adınızı girin">
                                         <div class="input-icon">🐱</div>
                                     </div>
+                                    <div class="error-message" id="firstName-error"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="lastName">Soyadı</label>
                                     <div class="input-wrapper">
-                                        <input type="text" id="lastName" name="lastName" required>
+                                        <input type="text" id="lastName" name="lastName" required placeholder="Soyadınızı girin">
                                         <div class="input-icon">🐭</div>
                                     </div>
+                                    <div class="error-message" id="lastName-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">E-posta</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="email" name="email" required placeholder="E-posta adresinizi girin">
+                                        <div class="input-icon">📧</div>
+                                    </div>
+                                    <div class="error-message" id="email-error"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="password">Şifre</label>
                                     <div class="input-wrapper">
-                                        <input type="password" id="password" name="password" required>
+                                        <input type="password" id="password" name="password" required placeholder="Şifrenizi girin">
                                         <div class="input-icon">🔒</div>
                                         <button type="button" class="toggle-password" id="togglePassword">👁️</button>
+                                    </div>
+                                    <div class="error-message" id="password-error"></div>
+                                    <div class="password-strength" id="password-strength">
+                                        <div class="strength-bar">
+                                            <div class="strength-fill" id="strength-fill"></div>
+                                        </div>
+                                        <span class="strength-text" id="strength-text">Şifre gücü</span>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="confirmPassword">Şifre Tekrar</label>
                                     <div class="input-wrapper">
-                                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Şifrenizi tekrar girin">
                                         <div class="input-icon">🔐</div>
                                         <button type="button" class="toggle-password" id="toggleConfirmPassword">👁️</button>
                                     </div>
+                                    <div class="error-message" id="confirmPassword-error"></div>
                                 </div>
                                 
                                 <div class="form-group grade-group">
@@ -93,6 +116,25 @@
                                             <span class="grade-checkmark">4. Sınıf</span>
                                         </label>
                                     </div>
+                                    <div class="error-message" id="grade-error"></div>
+                                </div>
+                                
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
+                                        <span class="checkmark"></span>
+                                        Kullanım şartlarını kabul ediyorum
+                                    </label>
+                                    <div class="error-message" id="terms-error"></div>
+                                </div>
+                                
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="privacyAccepted" name="privacyAccepted" required>
+                                        <span class="checkmark"></span>
+                                        Gizlilik politikasını kabul ediyorum
+                                    </label>
+                                    <div class="error-message" id="privacy-error"></div>
                                 </div>
                                 
                                 <div class="form-group">

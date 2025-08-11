@@ -2,7 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     
     <!--Title-->
     <title>{% block title %}Quiz Uygulaması{% endblock %}</title>
@@ -16,115 +19,44 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins/bootstrap-grid.css') }}">
     <!---Base-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base-mobile.css') }}">
     <!---Components-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components/navbar-enhanced.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/components/footer.css') }}">
     <!---Extra Styles-->
     {% block head_extra_styles %}{% endblock %}
-    
-    <!-- Merkezi Navbar Styles -->
-    <style>
-        /* Merkezi Navbar Düzenlemeleri - Tüm Sayfalar İçin */
-        .navbar-enhanced {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-user-profile-enhanced {
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-user-profile-enhanced:hover {
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
-        }
-        
-        /* Merkezi Yazı Boyutları - Tüm Sayfalar İçin */
-        .user-name-enhanced {
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-        
-        .user-grade-enhanced {
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        
-        .avatar-emoji-enhanced {
-            font-size: 1.1rem;
-        }
-        
-        .user-avatar-enhanced {
-            width: 32px;
-            height: 32px;
-        }
-        
-        /* Responsive Ayarlar */
-        @media (max-width: 768px) {
-            .user-name-enhanced {
-                font-size: 0.75rem;
-            }
-            
-            .user-grade-enhanced {
-                font-size: 0.6rem;
-            }
-            
-            .avatar-emoji-enhanced {
-                font-size: 1rem;
-            }
-            
-            .user-avatar-enhanced {
-                width: 28px;
-                height: 28px;
-            }
-        }
-    </style>
 </head>
 <body>
 
     <!--Navbar-->
     <header class="navbar navbar-enhanced">
-        <div class="navbar-container">
-            <div class="navbar-brand">
-                <svg class="navbar-logo" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+        <div class="navbar-container navbar-container-enhanced">
+            <div class="navbar-brand navbar-brand-enhanced">
+                <svg class="navbar-logo navbar-logo-enhanced" viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="20" cy="20" r="18" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
                     <text x="20" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#8B4513">🐱</text>
                 </svg>
-                <span class="navbar-title">MatchCatAI</span>
+                <span class="navbar-title navbar-title-enhanced">MatchCatAI</span>
             </div>
-            <nav class="navbar-nav">
-                <a href="/" class="nav-link">Ana Sayfa</a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Menüyü Aç/Kapat">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <nav class="navbar-nav navbar-nav-enhanced">
+                <a href="/" class="nav-link nav-link-enhanced">Ana Sayfa</a>
                 {% if session.get('logged_in') %}
-                    <a href="/quiz" class="nav-link">🎯 Quiz</a>
-                    <a href="/lesson_notes" class="nav-link">📚 Ders Notları</a>
-                    <div class="nav-user-profile nav-user-profile-enhanced">
-                        <div class="user-avatar-small user-avatar-enhanced">
-                            <span class="avatar-emoji-small avatar-emoji-enhanced">👤</span>
-                        </div>
-                        <div class="user-info-small">
-                            <span class="user-name user-name-enhanced">{{ session.get('first_name', session.get('username')) }}</span>
-                            <span class="user-grade user-grade-enhanced">{{ session.get('grade', '') }}. Sınıf</span>
-                        </div>
-                        <div class="nav-dropdown">
-                            <button class="dropdown-toggle">▼</button>
-                            <div class="dropdown-menu">
-                                <a href="/profile" class="dropdown-item">👤 Profilim</a>
-                                <a href="/quiz" class="dropdown-item">🎯 Quiz</a>
-                                <a href="/lesson_notes" class="dropdown-item">📚 Ders Notları</a>
-                                <a href="/progress" class="dropdown-item">📊 İlerleme</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="/logout" class="dropdown-item">🚪 Çıkış Yap</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="/quiz" class="nav-link nav-link-enhanced">🎯 Quiz</a>
+                    <a href="/lesson_notes" class="nav-link nav-link-enhanced">📚 Ders Notları</a>
+                    <a href="/profile" class="nav-link nav-link-enhanced">👤 Profilim</a>
+                    <a href="/progress" class="nav-link nav-link-enhanced">📊 İlerleme</a>
+                    <a href="/logout" class="nav-link nav-link-enhanced">🚪 Çıkış Yap</a>
                 {% else %}
-                    <a href="/login" class="nav-button">Giriş Yap</a>
+                    <a href="/login" class="nav-button nav-button-enhanced">Giriş Yap</a>
                 {% endif %}
             </nav>
         </div>

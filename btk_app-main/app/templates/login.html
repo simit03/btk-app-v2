@@ -5,6 +5,10 @@
 {% block head_extra_styles %}
     <!-- Login CSS Modules -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-mobile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login/login-cursor.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -30,22 +34,24 @@
                     <!-- Left Side - Login Form -->
                     <div class="login-left">
                         <div class="login-form-container">
-                            <form class="login-form" id="loginForm">
+                            <form class="login-form" id="loginForm" method="POST" action="{{ url_for('pages.login') }}">
                                 <div class="form-group">
                                     <label for="username">Kullanıcı Adı</label>
                                     <div class="input-wrapper">
-                                        <input type="text" id="username" name="username" required>
+                                        <input type="text" id="username" name="username" required placeholder="Kullanıcı adınızı girin">
                                         <div class="input-icon">👤</div>
                                     </div>
+                                    <div class="error-message" id="username-error"></div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="password">Şifre</label>
                                     <div class="input-wrapper">
-                                        <input type="password" id="password" name="password" required>
+                                        <input type="password" id="password" name="password" required placeholder="Şifrenizi girin">
                                         <div class="input-icon">🔒</div>
                                         <button type="button" class="toggle-password" id="togglePassword">👁️</button>
                                     </div>
+                                    <div class="error-message" id="password-error"></div>
                                 </div>
                                 
                                 <div class="form-group checkbox-group">
@@ -182,9 +188,5 @@
 
 {% block body_extra_scripts %}
     <!-- Login JavaScript Modules -->
-    <script src="{{ url_for('static', filename='js/login/login-header.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/login/login-form.js') }}"></script>
-    
-    <!-- Main Login App -->
     <script src="{{ url_for('static', filename='js/login/login.js') }}"></script>
 {% endblock %} 
