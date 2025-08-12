@@ -12,7 +12,7 @@ from typing import Dict, Any, Optional
 class GeminiService:
     def __init__(self):
         """Gemini servisini başlat"""
-        self.api_key = os.getenv('GEMINI_API_KEY')
+        self.api_key = "AIzaSyCw6nxbqUEqgpdB4REm0Nek-yyicOrkMwo"
         self.base_url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
         
         if not self.api_key:

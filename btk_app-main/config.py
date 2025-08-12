@@ -6,10 +6,10 @@ load_dotenv()
 
 # MySQL database configuration
 DB_CONFIG = {
-    'host': os.environ.get('MYSQL_HOST', 'localhost'),
-    'user': os.environ.get('MYSQL_USER', 'root'),
-    'password': os.environ.get('MYSQL_PASSWORD', ''),
-    'database': os.environ.get('MYSQL_DB', 'btk_app'),
+    'host': os.environ.get('MYSQL_HOST', 'matchcat.c5aso6aky04e.eu-north-1.rds.amazonaws.com'),
+    'user': os.environ.get('MYSQL_USER', 'admin'),
+    'password': os.environ.get('MYSQL_PASSWORD', 'Sa032157728'),
+    'database': os.environ.get('MYSQL_DB', 'mathcat'),
     'port': int(os.environ.get('MYSQL_PORT', 3306)),
     'charset': 'utf8mb4',
     'use_unicode': True,
@@ -19,7 +19,7 @@ DB_CONFIG = {
 class Config:
     """Base configuration."""
     # Application settings
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key-please-change-in-production'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'mysupersecretkeysaimtuncguclu'
     DEBUG = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 't')
     
     # MySQL database configuration
